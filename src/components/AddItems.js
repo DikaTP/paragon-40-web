@@ -1,18 +1,13 @@
 import { useState } from "react";
-import db from "../utils/firebase/firestore"
-import {collection, addDoc } from '@firebase/firestore'
+import { addDocument } from "@/utils/firebase/firestoreHelper";
 
 const AddItem = () => {
   const [value, setValue] = useState('')
-  
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
     try {
-      const docRef = await addDoc(collection(db, 'sampe_polls'), {
-        name: value
-      })
-      console.log('docRef: ', docRef.id)
+      const docId = await addDocument('sampe_polls', {name: value})
+      console.log('docId: ', docId)
       setValue('')
     } catch (error) {
       console.log('err add poll: ', error)
