@@ -6,8 +6,12 @@ import NavLink from '@/components/NavLink';
 import ListItems from '@/components/ListItems';
 import AddItem from '@/components/AddItems'
 
+import { useSession } from 'next-auth/react';
+
 export default function HomePage() {
   const t = useTranslations();
+  const s = useSession()
+
   return (
     <div className="flex grow flex-col">
       <div className="bg-white shadow-sm">

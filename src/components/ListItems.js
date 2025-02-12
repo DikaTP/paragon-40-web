@@ -9,7 +9,7 @@ const ListItems = () => {
   
   useEffect(() => {
     const fetchItems = async() => {
-      const querySnapshot = await getDocs(collection(db, 'sampe_polls'))
+      const querySnapshot = await getDocs(collection(db, 'user'))
       setItems(
         querySnapshot.docs.map((doc) => (
           { ...doc.data(), id: doc.id}

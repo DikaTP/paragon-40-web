@@ -1,0 +1,10 @@
+{
+    "id": ObjectId("..."), // Unique Object / Doc Id
+    "email": "john@example.com",
+    "passwordHash": "...", // Hashed password
+    "name": "John Doe",
+    "jobPosition": "Software Engineer",
+    "region": "jakarta",
+    "createdAt": "2025-02-09T00:00:00Z", // Timestamp
+    "updatedAt": "2025-02-09T00:00:00Z" // Timestamp
+}

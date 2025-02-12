@@ -1,14 +1,11 @@
-import { UsersIcon } from '@heroicons/react/24/outline';
 import { isEqual } from 'lodash';
 import { redirect } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { z } from 'zod';
-import Button from '@/components/Button';
-import FormField from '@/components/FormField';
 import LocaleSwitch from '@/components/LocaleSwitch';
-import { loginUser } from '@/services/session';
 import LoginForm from './LoginForm';
+import { Suspense } from 'react';
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -17,6 +14,7 @@ const loginFormSchema = z.object({
 
 async function loginAction(prev, data) {
   'use server';
+
   const t = await getTranslations('LoginPage');
   const values = Object.fromEntries(data);
 
@@ -57,42 +55,9 @@ export default function LoginPage() {
       <div className="absolute right-8 top-8">
         <LocaleSwitch />
       </div>
-      <LoginForm
-        key={locale}
-        action={loginAction}
-        fields={
-          <div className="flex flex-col gap-5">
-            <FormField
-              label={t('email')}
-              name="email"
-              placeholder="user@paragon.com"
-              required
-              type="email"
-            />
-            <FormField
-              label={t('password')}
-              name="password"
-              placeholder="••••••••"
-              required
-              type="password"
-            />
-          </div>
-        }
-        header={
-          <div className="text-center">
-            <UsersIcon className="mx-auto h-14 w-14 text-slate-900" />
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
-              {t('title')}
-            </h1>
-            <p className="mt-2 text-slate-700">{t('description')}</p>
-          </div>
-        }
-        submit={
-          <div>
-            <Button type="submit">{t('login')}</Button>
-          </div>
-        }
-      />
+      <Suspense>
+        <LoginForm />
+      </Suspense>
     </>
   );
 }

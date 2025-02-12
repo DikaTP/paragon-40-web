@@ -1,0 +1,8 @@
+{
+    "id": ObjectId("..."), // Unique Object / Doc Id
+    "pollId": ObjectId("..."), // ID of the poll being voted on
+    "userId": ObjectId("..."), // ID of the user who voted
+    "choiceId": 1, // ID of the chosen option
+    "region": "jakarta", // User's region (for faster querying)
+    "votedAt": "2025-02-11T12:34:56Z" // Timestamp of the vote
+}

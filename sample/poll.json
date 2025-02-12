@@ -1,0 +1,31 @@
+{
+    "id": ObjectId("..."), // Unique Object / Doc Id
+    "title": "Favorite Programming Language", // Poll title
+    "description": "What is your favorite programming language?", // Poll description
+    "choices": [
+        {
+            "id": 1,
+            "text": "JavaScript",
+            "votes": 0
+        },
+        {
+            "id": 2,
+            "text": "Python",
+            "votes": 0
+        },
+        {
+            "id": 3,
+            "text": "Java",
+            "votes": 0
+        }
+    ], // Array of choices with vote counts
+    "regions": [
+        "jakarta",
+        "bandung"
+    ], // Regions allowed to access this poll
+    "startTime": "2025-02-10T00:00:00Z", // Start time of the poll
+    "endTime": "2025-02-17T23:59:59Z", // End time of the poll
+    "createdBy": ObjectId("..."), // Admin user ID who created the poll
+    "createdAt": "2025-02-09T00:00:00Z", // Timestamp of poll creation
+    "updatedAt": "2025-02-09T00:00:00Z" // Timestamp of last update
+}
