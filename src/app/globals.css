@@ -20,7 +20,8 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: #4A4A4A;
   font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(94.18% 180.6% at 1.74% 2.15%, #EAEAEA 14.08%, #F0D4E1 37.11%, #ADE0F1 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  min-height: 100vh;
 }

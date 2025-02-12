@@ -12,10 +12,10 @@ export default function NavLink({ href, ...rest }) {
     <Link
     aria-current={isActive ? 'page' : undefined}
     className={clsx(
-      'border-b-2 border-transparent py-2 font-semibold transition-colors',
+      'border rounded-full px-6 py-2 border-primary transition-colors',
       isActive
-      ? 'border-b-slate-900 text-slate-900'
-      : 'text-slate-600 hover:border-b-slate-300 hover:text-slate-900'
+      ? 'bg-primary text-white'
+      : 'text-primary'
     )}
     href={href}
     {...rest}
