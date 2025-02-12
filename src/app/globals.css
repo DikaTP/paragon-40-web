@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-font-smoothing: antialiased;
+  @apply outline-sky-600;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

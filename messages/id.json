@@ -10,7 +10,14 @@
     "title": "Profil"
   },
   "LoginPage": {
-    "title": "Login"
+    "title": "Selamat datang",
+    "description": "Silakan masukkan detail Anda.",
+    "email": "Email",
+    "invalidCredentials": "Silakan periksa kredensial Anda.",
+    "invalidEmail": "Silakan masukkan alamat email yang valid.",
+    "invalidPassword": "Silakan masukkan kata sandi.",
+    "login": "Masuk",
+    "password": "Kata sandi"
   },
   "LocaleSwitch": {
     "id": "Indonesia",
