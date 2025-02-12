@@ -1,0 +1,20 @@
+{
+  "home": "Home",
+  "login": "Login",
+  "logout": "Logout",
+  "profile": "Profile",
+  "HomePage": {
+    "title": "Home"
+  },
+  "ProfilePage": {
+    "title": "Profile"
+  },
+  "LoginPage": {
+    "title": "Login"
+  },
+  "LocaleSwitch": {
+    "id": "Indonesia",
+    "en": "English",
+    "label": "Language"
+  }
+}

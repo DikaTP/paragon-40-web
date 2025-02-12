@@ -1,0 +1,20 @@
+{
+  "home": "Beranda",
+  "login": "Masuk",
+  "logout": "Keluar",
+  "profile": "Profil",
+  "HomePage": {
+    "title": "Beranda"
+  },
+  "ProfilePage": {
+    "title": "Profil"
+  },
+  "LoginPage": {
+    "title": "Login"
+  },
+  "LocaleSwitch": {
+    "id": "Indonesia",
+    "en": "Inggris",
+    "label": "Bahasa"
+  }
+}
