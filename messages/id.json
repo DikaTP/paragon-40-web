@@ -10,10 +10,27 @@
     "welcome": "Selamat Datang"
   },
   "ProfilePage": {
-    "title": "Profil"
+    "title": "Profil",
+    "description": "Gunakan QR Code untuk memasuki Main Event",
+    "regionOffice": "Area Kerja"
   },
   "AboutPage": {
-    "title": "Tentang Kami"
+    "title": "TENTANG PARAGON P40",
+    "description1": "Paragon akan menginjakkan usia yang ke-40. Ini bukan mengenai perayaan seperti biasanya. Ini merupakan momen bersama 14.000 Paragonian, dimana kita akan membuka cara pikir baru yang lebih baik untuk kebaikan di masa depan dari hari ini. Kalian lah yang menentukan, karena “Pilihan Paragon adalah Pilihan Paragonian”.",
+    "description2": "bukan hanya tentang merayakan perjalanan Paragon, tetapi menegaskan bahwa permainan baru telah dimulai dengan tantangan lebih besar, inovasi lebih berani, dan dampak lebih luas.",
+    "description3": "Paragon tidak hanya bertahan dalam industri, tetapi juga mengubah permainan. Sekarang, di usia 40 tahun, setelah unlocking new thinking, kita memasuki arena baru dengan mindset baru, siap untuk mengakselerasi inovasi, menciptakan dampak global, dan membangun peradaban yang lebih maju."
+  },
+  "PreEventPage": {
+    "openingSpeech": "Pemilihan Pidato Pembuka Acara",
+    "openingSpeechDescription": "Di main event 28 Februari 2025 nanti, acara P40 mau dibuka oleh siapa",
+    "votingResult": "Hasil Suara",
+    "timeline": "Timeline",
+    "festivalParagonTalks": "Festival Paragon Talks",
+    "aboutFestival": "Tentang Festival",
+    "festivalDescription1": "Festival Paragonian Talks adalah Pre-Event yang merupakan salah satu dari rangkaian journey menuju P40. Dengan format yaitu Paragonian Talks (talkshow) dan Festival Kuliner, harapannya agenda ini semakin meningkatkan semangat dan semarak menuju P40, dan menekankan mengenai “Pilihan Paragon Adalah Pilihan Paragonian” serta Paragon 40 tahun ini adalah momen bersama seluruh paragonian.Festival Paragonian Talks adalah Pre-Event yang merupakan salah satu dari rangkaian journey menuju P40. Dengan format yaitu Paragonian Talks (talkshow) dan Festival Kuliner, harapannya agenda ini semakin meningkatkan semangat dan semarak menuju P40, dan menekankan mengenai “Pilihan Paragon Adalah Pilihan Paragonian” serta Paragon 40 tahun ini adalah momen bersama seluruh paragonian.",
+    "festivalDescription2": "Acara utama dari Pre-Event ini yaitu Paragonian Talks: Talkshow Lintas Generasi. Ini adalah sesi diskusi interaktif yang melibatkan 2 orang Paragonian dari generasi yang berbeda dan bertemu untuk berbagi pengalaman, perspektif, dan harapan.",
+    "festivalDescription3": "Objektif: Menjadi wadah bagi semua untuk saling belajar dari siapa saja dan reverse mentoring, serta menghargai kontribusi masing-masing dalam perjalanan Paragon ke-40 tahun.",
+    "festivalDescription4": "Dari senior kita bisa belajar mengenai grit, masa-masa perjuangan yang bisa membuat kita sebesar sekarang, spirit yang dijaga dan gotong royong yang diterapkan. Dari yang lebih muda kita bisa belajar mengenai relevansi dengan trend, bagaimana generasi berkembang, dan bagaimana transformasi teknologi saat ini"
   },
   "LoginPage": {
     "titleHighlight": "Ulang Tahun Paragon P40",

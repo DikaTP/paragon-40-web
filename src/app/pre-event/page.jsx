@@ -1,10 +1,6 @@
 "use client"
 
 import { useTranslations } from 'next-intl';
-import LocaleSwitch from '@/components/LocaleSwitch';
-import NavLink from '@/components/NavLink';
-import ListItems from '@/components/ListItems';
-import AddItem from '@/components/AddItems';
 import Image from 'next/image';
 
 import { useSession } from 'next-auth/react';
@@ -27,20 +23,20 @@ export default function PreEventPage() {
         {/* VOTING OPENING SPEECH */}
         <div className="mx-auto flex max-w-screen-2xl py-4 px-16 mt-8 text-white">
           <div className="w-full p-6 rounded-3xl bg-gradient-to-r from-sky-300 to-fuchsia-300 h-full">
-            <a href="" className="text-3xl">Voting Opening Speech</a>
-            <p className="text-base">At the main event on February 28, 2025, who will open the P40 event?</p>
+            <a href="" className="text-3xl">{t('PreEventPage.openingSpeech')}</a>
+            <p className="text-base">{t('PreEventPage.openingSpeechDescription')}?</p>
           </div>
         </div>
         {/* VOTING RESULT */}
         <div className="mx-auto flex max-w-screen-2xl py-4 px-16 mt-2 text-white">
           <div className="w-full p-6 rounded-3xl bg-gradient-to-r from-sky-300 to-fuchsia-300 h-full">
-            <a href="" className="text-3xl">Voting Result</a>
+            <a href="" className="text-3xl">{t('PreEventPage.votingResult')}</a>
           </div>
         </div>
         {/* TIMELINE */}
         <div className="mx-auto flex max-w-screen-2xl py-4 px-16 mt-2 text-white">
           <div className="w-full p-6 rounded-3xl bg-gradient-to-r from-sky-300 to-fuchsia-300 h-full">
-            <a href="" className="text-3xl">Timeline</a>
+            <a href="" className="text-3xl">{t('PreEventPage.timeline')}</a>
             <div className="-my-6 mt-5">
               <div className="relative pl-24 py-6 group">
                 <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
@@ -103,7 +99,7 @@ export default function PreEventPage() {
         {/* FESTIVAL PARAGON TALKS */}
         <div className="mx-auto flex max-w-screen-2xl py-4 px-16 mt-2 text-white">
           <div className="w-full p-6 rounded-3xl bg-gradient-to-r from-sky-300 to-fuchsia-300 h-full">
-            <a href="" className="text-3xl">Festival Paragon Talks</a>
+            <a href="" className="text-3xl">{t('PreEventPage.festivalParagonTalks')}</a>
             <div className="-my-6 mt-5">
               <div className="relative pl-24 py-6 group">
                 <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
@@ -155,12 +151,12 @@ export default function PreEventPage() {
         {/* ABOUT PARAGONIAN TALKS */}
         <div className="mx-auto flex max-w-screen-2xl py-4 px-16 mt-2 text-white">
           <div className="w-full p-6 rounded-3xl bg-gradient-to-r from-sky-300 to-fuchsia-300 h-full">
-            <a href="" className="text-3xl">About Festival Paragonian Talks</a>
+            <a href="" className="text-3xl">{t('PreEventPage.aboutFestival')} Paragonian Talks</a>
             <div className="mt-5">
-              <p className="text-base mb-3">The Paragonian Talks Festival is a Pre-Event that is one of a series of journeys towards P40. With the format of Paragonian Talks (talkshow) and Culinary Festival, it is hoped that this agenda will further increase the spirit and excitement towards P40, and emphasize “Paragon's Choice is Paragonian's Choice” and Paragon 40 this year is a moment with all paragonians.</p>
-              <p className="text-base mb-3">The main event of this Pre-Event is Paragonian Talks: Talkshow Across Generations. This was an interactive discussion session that involved 2 Paragonians from different generations meeting to share experiences, perspectives, and hopes.</p>
-              <p className="text-base mb-3">Objective: To be a platform for all to learn from each other and reverse mentoring, and appreciate each other's contribution in Paragon's 40th year journey.</p>
-              <p className="text-base">From the seniors we can learn about grit, the struggles that made us what we are today, the spirit that is maintained and the mutual cooperation that is applied. From the younger ones we can learn about relevance to trends, how generations evolve, and how technology transforms today.</p>
+              <p className="text-base mb-3">{t('PreEventPage.festivalDescription1')}</p>
+              <p className="text-base mb-3">{t('PreEventPage.festivalDescription2')}</p>
+              <p className="text-base mb-3">{t('PreEventPage.festivalDescription3')}</p>
+              <p className="text-base">{t('PreEventPage.festivalDescription4')}</p>
             </div>
           </div>
         </div>

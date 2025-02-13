@@ -10,10 +10,27 @@
     "welcome": "Welcome"
   },
   "ProfilePage": {
-    "title": "Profile"
+    "title": "Profile",
+    "description": "Scan QR Code to enter the Main Event",
+    "regionOffice": "Region Office"
   },
   "AboutPage": {
-    "title": "About"
+    "title": "ABOUT PARAGON P40",
+    "description1": "Paragon is about to turn 40. It's not about the usual celebrations. It's a moment with 14,000 Paragonians, where we will open a new and better way of thinking for the betterment of the future from today. You are the ones who decide, because “Paragon's Choice is Paragonian's Choice”.",
+    "description2": "It's not just about celebrating Paragon's journey, but affirming that a new game has begun with greater challenges,bolder innovations, and broader impact.",
+    "description3": "Paragon has not only survived in the industry, but also changed the game. Now, at 40 years old, after unlocking new thinking, we enter a new arena with a new mindset, ready to accelerate innovation, create global impact, and build a more advanced civilization."
+  },
+  "PreEventPage": {
+    "openingSpeech": "Voting Opening Speech",
+    "openingSpeechDescription": "At the main event on February 28, 2025, who will open the P40 event",
+    "votingResult": "Voting Result",
+    "timeline": "Timeline",
+    "festivalParagonTalks": "Festival Paragon Talks",
+    "aboutFestival": "About Festival",
+    "festivalDescription1": "The Paragonian Talks Festival is a Pre-Event that is one of a series of journeys towards P40. With the format of Paragonian Talks (talkshow) and Culinary Festival, it is hoped that this agenda will further increase the spirit and excitement towards P40, and emphasize “Paragon's Choice is Paragonian's Choice” and Paragon 40 this year is a moment with all paragonians.",
+    "festivalDescription2": "The main event of this Pre-Event is Paragonian Talks: Talkshow Across Generations. This was an interactive discussion session that involved 2 Paragonians from different generations meeting to share experiences, perspectives, and hopes.",
+    "festivalDescription3": "Objective: To be a platform for all to learn from each other and reverse mentoring, and appreciate each other's contribution in Paragon's 40th year journey.",
+    "festivalDescription4": "From the seniors we can learn about grit, the struggles that made us what we are today, the spirit that is maintained and the mutual cooperation that is applied. From the younger ones we can learn about relevance to trends, how generations evolve, and how technology transforms today."
   },
   "LoginPage": {
     "titleHighlight": "40 Years",
