@@ -3,8 +3,11 @@
   "login": "Login",
   "logout": "Logout",
   "profile": "Profile",
+  "about": "About P40",
   "HomePage": {
-    "title": "Home"
+    "title": "Home",
+    "welcomeMessage": "40 years and Beyond!",
+    "welcome": "Welcome"
   },
   "ProfilePage": {
     "title": "Profile"

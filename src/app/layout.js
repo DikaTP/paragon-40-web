@@ -6,6 +6,7 @@ import { auth } from '@/auth';
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navigation from '@/components/Navigation';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }) {
         {/* Wrap children with AuthProvider and pass the session prop */}
         <AuthProvider session={session}>
           <NextIntlClientProvider messages={messages}>
+            {session?.user && <Navigation/>}
             <main>{children}</main>
           </NextIntlClientProvider>
         </AuthProvider>

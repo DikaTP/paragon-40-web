@@ -12,7 +12,7 @@ export default function NavLink({ href, ...rest }) {
     <Link
     aria-current={isActive ? 'page' : undefined}
     className={clsx(
-      'border rounded-full px-6 py-2 border-primary transition-colors',
+      'border rounded-full px-6 py-2 border-primary transition-colors text-center',
       isActive
       ? 'bg-primary text-white'
       : 'text-primary'

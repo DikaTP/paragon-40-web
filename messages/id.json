@@ -3,8 +3,11 @@
   "login": "Masuk",
   "logout": "Keluar",
   "profile": "Profil",
+  "about": "Tentang P40",
   "HomePage": {
-    "title": "Beranda"
+    "title": "Beranda",
+    "welcomeMessage": "Ayo Rayakan Paragon P40!",
+    "welcome": "Selamat Datang"
   },
   "ProfilePage": {
     "title": "Profil"
