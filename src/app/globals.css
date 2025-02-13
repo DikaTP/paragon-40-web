@@ -22,10 +22,16 @@
 body {
   color: #4A4A4A;
   font-family: Arial, Helvetica, sans-serif;
-  background: radial-gradient(94.18% 180.6% at 1.74% 2.15%, #EAEAEA 14.08%, #F0D4E1 37.11%, #ADE0F1 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  background: radial-gradient(94.18% 180.6% at 1.74% 2.15%, #EAEAEA 14.08%, #F0D4E1 37.11%, #ADE0F1 100%);
   min-height: 100vh;
 }
 
 .bg-transparent-nav {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, rgba(186, 229, 255, 0.3) 45.78%);
+}
+
+.bg-kv-gradient {
+  background: linear-gradient(90deg, rgba(90, 148, 201, 0.4) 43.5%, rgba(242, 115, 244, 0.4) 100%);
+  backdrop-filter: blur(40px);
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
