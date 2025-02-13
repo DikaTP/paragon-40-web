@@ -15,6 +15,9 @@
   "AboutPage": {
     "title": "About"
   },
+  "MainEventPage": {
+    "title": "MAIN EVENT"
+  },
   "LoginPage": {
     "titleHighlight": "40 Years",
     "title": "and Beyond!",
