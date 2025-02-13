@@ -1,0 +1,67 @@
+# Settings for Backend (on Cloud Run).
+# See https://firebase.google.com/docs/app-hosting/configure#cloud-run
+runConfig:
+  minInstances: 2
+  maxInstances: 200
+  concurrency: 100
+  cpu: 2
+  memoryMiB: 2048
+
+# Environment variables and secrets.
+# env:
+  # Configure environment variables.
+  # See https://firebase.google.com/docs/app-hosting/configure#user-defined-environment
+  # - variable: MESSAGE
+  #   value: Hello world!
+  #   availability:
+  #     - BUILD
+  #     - RUNTIME
+
+env:
+- variable: NEXT_PUBLIC_FIREBASE_API_KEY
+  value: AIzaSyBlxr3VJWa0VE2IrOwGkf6P1KjRL3ul1pU
+  availability:
+  - BUILD
+  - RUNTIME
+- variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+  value: p40-env-dev.firebaseapp.com
+  availability:
+  - BUILD
+  - RUNTIME
+- variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+  value: p40-env-dev
+  availability:
+  - BUILD
+  - RUNTIME
+- variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+  value: p40-env-dev.firebasestorage.app
+  availability:
+  - BUILD
+  - RUNTIME
+- variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+  value: 351244412102
+  availability:
+  - BUILD
+  - RUNTIME
+- variable: NEXT_PUBLIC_FIREBASE_APP_ID
+  value: 1:351244412102:web:d961dd8e1a238cfe9723c7
+  availability:
+  - BUILD
+- variable: COOKIE_SECURE
+  value: false
+  availability:
+  - BUILD
+  - RUNTIME
+  - RUNTIME
+- variable: NEXTAUTH_URL
+  value: https://paragon-40-web--paragon-p40.asia-east1.hosted.app/
+  availability:
+  - BUILD
+  - RUNTIME
+  - RUNTIME
+- variable: NEXTAUTH_SECRET
+  value: ryCJet9+m9ZUyivHjIj0jETO8NOtjrqe1VGeFOz36qs=
+  availability:
+  - BUILD
+  - RUNTIME
+  - RUNTIME
