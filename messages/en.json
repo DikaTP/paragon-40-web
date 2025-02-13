@@ -13,14 +13,17 @@
     "title": "Profile"
   },
   "LoginPage": {
-    "title": "Welcome",
-    "description": "Please enter your details.",
+    "titleHighlight": "40 Years",
+    "title": "and Beyond!",
+    "description": "Login here first",
+    "login": "Login",
     "email": "Email",
+    "password": "Password",
     "invalidCredentials": "Please check your credentials.",
     "invalidEmail": "Please enter a valid email address.",
     "invalidPassword": "Please enter a password.",
-    "login": "Sign in",
-    "password": "Password"
+    "emailPlaceholder": "Input your email",
+    "passwordPlaceholder": "Input your password"
   },
   "LocaleSwitch": {
     "id": "Indonesia",
