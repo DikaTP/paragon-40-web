@@ -18,7 +18,6 @@ export default function LocaleSwitch() {
           label: t('id'),
         },
       ]}
-      label={t('label')}
     />
   );
 }

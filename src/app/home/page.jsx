@@ -45,9 +45,6 @@ export default function HomePage() {
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-2xl grow flex-col py-10">
-        <h1>Polls</h1>
-        <AddItem />
-        <ListItems />
       </div>
     </div>
   );
