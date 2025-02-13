@@ -62,9 +62,12 @@ export const getUserByEmail = async (email) => {
   try {
     const usersRef = collection(db, 'user');
     const q = query(usersRef, where('email', '==', email));
-    const snap = await getDoc(q);
-    if (!snap.empty) {
-      return { id: snap.id, ...snap.data() };
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // Assuming email is unique, return the first document
+      const userDoc = querySnapshot.docs[0];
+      return { id: userDoc.id, ...userDoc.data() };
     } else {
       console.log('No user found with the given email.');
       return null;
