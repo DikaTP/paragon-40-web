@@ -12,6 +12,9 @@
   "ProfilePage": {
     "title": "Profile"
   },
+  "AboutPage": {
+    "title": "About"
+  },
   "LoginPage": {
     "titleHighlight": "40 Years",
     "title": "and Beyond!",
