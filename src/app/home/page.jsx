@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react';
 export default function HomePage() {
   const t = useTranslations();
   const s = useSession()
-  
+
   return (
     <div className="flex grow flex-col">
       <div className="">
@@ -33,7 +33,7 @@ export default function HomePage() {
           <h2 className="text-5xl">Welcome, username</h2>
         </div>
         <div>
-          <Image src="/game-on-logo.png" alt="logo" width="200" height="128"/>
+          <Image src="/game-on-logo.png" alt="logo" width="200" height="128" />
         </div>
       </div>
       <div className="flex max-w-screen-2xl py-4 px-16 gap-4">

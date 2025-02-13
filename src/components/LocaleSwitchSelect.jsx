@@ -19,7 +19,7 @@ export default function LocaleSwitchSelect({
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2">
       {items.map((item) => (
           <button key={item.value}
             className={`px-4 py-2
