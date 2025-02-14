@@ -2,19 +2,19 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-
-import { useSession } from 'next-auth/react';
+import { useContext } from 'react';
+import { UserContext } from '../providers/AuthProvider';
 
 export default function HomePage() {
   const t = useTranslations();
-  const s = useSession();
+  const authUser = useContext(UserContext)
 
   return (
     <div className="flex flex-col max-w-screen-2xl mx-auto py-4 px-4 lg:px-16">
       <div className="flex w-full justify-between mb-4 lg:mb-8">
         <div>
           <h1 className="text-lg lg:text-7xl font-bold">{t('HomePage.welcomeMessage')}</h1>
-          <h2 className="lg:text-5xl">{t('HomePage.welcome')}, {s.data?.user?.name || ''}</h2>
+          <h2 className="lg:text-5xl">{t('HomePage.welcome')}, {authUser?.name || ''}</h2>
         </div>
         <div>
           <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50] lg:w-[200]'/>

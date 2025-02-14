@@ -3,11 +3,9 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-import { useSession } from 'next-auth/react';
 
 export default function PreEventPage() {
   const t = useTranslations();
-  const s = useSession()
   
   return (
     <div className="flex flex-col max-w-screen-2xl mx-auto py-4 px-4 lg:px-16">

@@ -1,18 +1,20 @@
 'use client';
 
-import { Suspense, useState } from "react";
+import { Suspense, useContext, useState } from "react";
 import { useTranslations } from 'next-intl';
 import NavLink from '@/components/NavLink';
 import Image from 'next/image';
 import LocaleSwitch from '@/components/LocaleSwitch';
 import clsx from "clsx";
 import { signOut, useSession } from "next-auth/react";
+import { UserContext } from "@/app/providers/AuthProvider";
 
 
 
 export default function Navigation() {
   const t = useTranslations();
   const s = useSession();
+  const authUser = useContext(UserContext)
     
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   function toggleMobileMenuOpen() {
@@ -40,8 +42,8 @@ export default function Navigation() {
           <div className="relative">
             <button type="button" onClick={toggleDropdownProfileOpen} className="text-left flex items-center gap-2">
               <div className="">
-                <p className="font-bold">{s.data?.user?.name || ''}</p>
-                <p className="text-sm">Region: {s.data?.user?.region || ''}</p>
+                <p className="font-bold">{authUser?.name || ''}</p>
+                <p className="text-sm">Region: {authUser?.region || ''}</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
