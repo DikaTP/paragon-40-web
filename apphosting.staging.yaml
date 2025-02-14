@@ -1,0 +1,34 @@
+runConfig:
+  minInstances: 1
+  maxInstances: 10
+  cpu: 1
+  memoryMiB: 512
+  concurrency: 15
+
+env:
+  - variable: AUTH_URL
+    value: https://paragon-40-web-staging--paragon-p40.asia-east1.hosted.app/
+
+  - variable: AUTH_TRUST_HOST
+    value: true
+
+  - variable: AUTH_SECRET
+    secret: stg_auth_secret
+
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: p40-env-dev.firebaseapp.com
+
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: p40-env-dev
+
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: p40-env-dev.firebasestorage.app
+
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    secret: stg_next_firebase_api_key
+
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    secret: stg_next_firebase_messaging_sender_id
+
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    secret: stg_next_firebase_app_id
