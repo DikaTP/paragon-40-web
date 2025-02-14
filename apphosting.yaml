@@ -2,7 +2,35 @@
 # See https://firebase.google.com/docs/app-hosting/configure#cloud-run
 runConfig:
   minInstances: 2
-  maxInstances: 100
-  concurrency: 100
+  maxInstances: 80
+  concurrency: 80
   cpu: 2
   memoryMiB: 4096
+
+env:
+  - variable: AUTH_URL
+    value: https://paragon40.com/
+
+  - variable: AUTH_TRUST_HOST
+    value: true
+
+  - variable: AUTH_SECRET
+    secret: prd_auth_secret
+
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: paragon-p40.firebaseapp.com
+
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: paragon-p40
+
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: paragon-p40.firebasestorage.app
+
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    secret: prd_next_firebase_api_key
+
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    secret: prd_next_firebase_messaging_sender_id
+
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    secret: prd_next_firebase_app_id
