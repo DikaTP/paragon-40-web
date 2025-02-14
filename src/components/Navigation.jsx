@@ -26,7 +26,7 @@ export default function Navigation() {
 
   return (
     <div className="">
-      <div className="mx-auto flex max-w-screen-2xl items-end justify-between py-4 px-4 lg:px-16 mb-8">
+      <div className="mx-auto flex max-w-screen-2xl items-end justify-between py-4 px-4 lg:px-16 lg:mb-8">
         <Image src="/p40-logo.png" alt="logo" width="100" height="67" className='w-[60] lg:w-[100]' />
         <div className="hidden lg:block">
           <nav className="flex gap-6">
@@ -49,7 +49,7 @@ export default function Navigation() {
             </button>
             <div className={clsx("absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-transparent-nav ring-1 shadow-lg ring-black/5 focus:outline-hidden", !isDropdownProfileOpen && 'hidden')} role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
               <div className="flex flex-col gap-4 p-4" role="none">
-                <NavLink onClick={toggleMobileMenuOpen} href="/profile">{t('profile')}</NavLink>
+                <NavLink onClick={toggleDropdownProfileOpen} href="/profile">{t('profile')}</NavLink>
                 <button onClick={() => signOut()} className="border rounded-full px-6 py-2 bg-red-500 text-center text-white">Log Out</button>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default function Navigation() {
           </button>
         </div>
       </div>
-      <div className={clsx("absolute top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col", !isMobileMenuOpen && 'hidden' )}>
+      <div className={clsx("absolute top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-10", !isMobileMenuOpen && 'hidden' )}>
         <div className="p-4 flex justify-between">
           <Image src="/p40-logo.png" alt="logo" width="60" height="39"/>
           <button type='button' className='inline-flex items-center text-white p-2 justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500' onClick={toggleMobileMenuOpen}>

@@ -4,19 +4,11 @@ import { getLocale, getMessages } from 'next-intl/server';
 import AuthProvider from '@/app/providers/AuthProvider'; // Import the Client-Side AuthProvider
 import { auth } from '@/auth';
 
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import Navigation from '@/components/Navigation';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const archivo = Archivo({ subsets: ['latin'] })
 
 export const metadata = {
   title: "PARAGON 40",
@@ -32,7 +24,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang={locale} suppressHydrationWarning={true}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${archivo.className} antialiased`}
       >
         {/* Wrap children with AuthProvider and pass the session prop */}
         <AuthProvider session={session}>
