@@ -24,10 +24,10 @@ export default function PreEventPage() {
         <p className="text-base">{t('PreEventPage.openingSpeechDescription')}?</p>
       </div>
 
-      {/* TIMELINE */}
+      {/* Timeline */}
       <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
         <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.timeline')}</a>
-        <div className="-my-6 mt-5">
+        <div className="">
           <div className="relative pl-8 lg:pl-24 py-6 group">
             <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
               <div className="px-7 bg-blue-700 rounded-full w-65 ">
@@ -35,10 +35,10 @@ export default function PreEventPage() {
                 <p className="text-base">Festival Paragonian Talks</p>
               </div>
             </div>
-            <div className="font-bold pl-3">
+            <div className="pl-3">
               <p>February 14th, 2025</p>
               <p>(07.30-10.00 WIB)</p>
-              <p>HO (P9), Plant (J6), All DC</p>
+              <p className='font-bold'>HO (P9), Plant (J6), All DC</p>
             </div>
           </div>
           <div className="relative pl-8 lg:pl-24 py-6 group">
@@ -48,10 +48,10 @@ export default function PreEventPage() {
                 <p className="text-base">Paragonian Talks (Malaysia)</p>
               </div>
             </div>
-            <div className="font-bold pl-3">
+            <div className="pl-3">
               <p>February 26th, 2025</p>
               <p>(08.30-09.30 WIB)</p>
-              <p>Malaysia</p>
+              <p className='font-bold'>Malaysia</p>
             </div>
           </div>
           <div className="relative pl-8 lg:pl-24 py-6 group">
@@ -61,10 +61,10 @@ export default function PreEventPage() {
                 <p className="text-base">Inauguration of Paragon HQ</p>
               </div>
             </div>
-            <div className="font-bold pl-3">
+            <div className="pl-3">
               <p>February 26th, 2025</p>
               <p>(08.30-09.30 WIB)</p>
-              <p>Ciledug Office</p>
+              <p className='font-bold'>Ciledug Office</p>
             </div>
           </div>
           <div className="relative pl-8 lg:pl-24 py-6 group">
@@ -73,10 +73,10 @@ export default function PreEventPage() {
                 <p className="text-base">Main Event</p>
               </div>
             </div>
-            <div className="font-bold pl-3">
+            <div className="pl-3">
               <p>February 28th, 2025</p>
               <p>(07.30-10.00 WIB)</p>
-              <p>Movie theaters in every branch area</p>
+              <p className='font-bold'>Movie theaters in every branch area</p>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function PreEventPage() {
                   <p className="text-base">Head Office Indonesia</p>
                 </div>
               </div>
-              <div className="font-bold pl-3">
+              <div className="pl-3">
                 <p>February 14th, 2025</p>
                 <p>(07.30-10.00 WIB)</p>
               </div>
@@ -106,7 +106,7 @@ export default function PreEventPage() {
                   <p className="text-base">Plant Indonesia</p>
                 </div>
               </div>
-              <div className="font-bold pl-3">
+              <div className="pl-3">
                 <p>February 26th, 2025</p>
                 <p>(14.00-17.00 WIB)</p>
               </div>
@@ -117,7 +117,7 @@ export default function PreEventPage() {
                   <p className="text-base">DC Indonesia</p>
                 </div>
               </div>
-              <div className="font-bold pl-3">
+              <div className="pl-3">
                 <p>February 26th, 2025</p>
                 <p>(07.30-10.00 WIB)</p>
               </div>
@@ -128,7 +128,7 @@ export default function PreEventPage() {
                   <p className="text-base">DC Malaysia</p>
                 </div>
               </div>
-              <div className="font-bold pl-3">
+              <div className="pl-3">
                 <p>February 28th, 2025</p>
                 <p>(09.00-11.00 WIB)</p>
               </div>
