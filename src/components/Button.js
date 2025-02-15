@@ -7,7 +7,7 @@ export default function Button(props) {
 
   return (
     <button
-      className="w-full bg-primary text-white py-2 rounded-xl transition-all hover:enabled:opacity-80 disabled:opacity-60"
+      className="w-full bg-primary text-white py-2 rounded-xl transition-all hover:enabled:opacity-80 disabled:opacity-50"
       disabled={pending}
       type="button"
       {...props}

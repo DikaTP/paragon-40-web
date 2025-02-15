@@ -6,13 +6,11 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnHome = nextUrl.pathname.startsWith('/');
-      if (isOnHome) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
-        return Response.redirect(new URL('/', nextUrl));
-      }
-      return true;
+      const isOnLogin = nextUrl.pathname.startsWith('/login');
+      if(isLoggedIn && isOnLogin) return Response.redirect(new URL('/', nextUrl));
+
+      if(!isLoggedIn) return false
+      return true
     },
     session({ session, token }) {
       if (session.user) {
