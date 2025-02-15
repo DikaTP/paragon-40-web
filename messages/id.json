@@ -28,7 +28,7 @@
   },
   "PreEventPage": {
     "openingSpeech": "Pemilihan Pidato Pembuka Acara",
-    "openingSpeechDescription": "Di main event 28 Februari 2025 nanti, acara P40 mau dibuka oleh siapa",
+    "openingSpeechDescription": "Di main event 28 Februari 2025 nanti, acara P40 mau dibuka oleh siapa?",
     "votingResult": "Hasil Suara",
     "timeline": "Timeline",
     "festivalParagonTalks": "Festival Paragon Talks",
@@ -52,7 +52,12 @@
     "invalidEmail": "Please enter a valid email address.",
     "invalidPassword": "Please enter a password.",
     "emailPlaceholder": "Masukkan emailmu",
-    "passwordPlaceholder": "Masukkan kata sandimu"
+    "passwordPlaceholder": "Masukkan kata sandimu",
+    "loading": "Memuat",
+    "success": "Berhasil masuk",
+    "invalid": "Email atau password salah",
+    "error": "Gagal! silakan coba lagi",
+    "close": "Tutup"
   },
   "LocaleSwitch": {
     "id": "Indonesia",

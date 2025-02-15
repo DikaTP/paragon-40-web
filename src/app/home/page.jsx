@@ -167,7 +167,7 @@ export default function HomePage() {
           <div className="mt-4">
 
             <p className='mb-4'>Q: {pollResult.description[locale]}</p>
-            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 items-center">
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 items-center select-none">
               {pollResult.choices.map((choice => (
                 <div 
                   key={choice.key}
