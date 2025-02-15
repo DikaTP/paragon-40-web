@@ -7,7 +7,11 @@
   "HomePage": {
     "title": "Beranda",
     "welcomeMessage": "Ayo Rayakan Paragon P40!",
-    "welcome": "Selamat Datang"
+    "welcome": "Selamat Datang",
+    "weeklyQuestion": "Pertanyaan P40 Mingguan",
+    "votingResult": "Hasil Suara",
+    "week": "Minggu",
+    "weekShort": "M"
   },
   "ProfilePage": {
     "title": "Profil",

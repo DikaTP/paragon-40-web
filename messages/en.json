@@ -7,7 +7,11 @@
   "HomePage": {
     "title": "Home",
     "welcomeMessage": "40 years and Beyond!",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "weeklyQuestion": "Weekly P40 Question",
+    "votingResult": "Voting Result",
+    "week": "Week",
+    "weekShort": "W"
   },
   "ProfilePage": {
     "title": "Profile",

@@ -1,11 +1,11 @@
-import { collection, query, where, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, Timestamp } from "firebase/firestore";
+import { collection, query, where, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, documentId, Timestamp } from "firebase/firestore";
 import db from "@/utils/firebase/firestore"
 
 /**
  * Adds a document to a Firestore collection.
  * @param {string} collectionName - The name of the Firestore collection.
  * @param {object} data - The data to add to the document.
- * @returns {string} - The ID of the newly created document.
+ * @returns {Promise<string>} - The ID of the newly created document.
  * @throws {Error} - If there's an error adding the document.
  */
 export const addDocument = async (collectionName, data) => {
@@ -51,6 +51,10 @@ export const getDocument = async (collectionName, docId) => {
     throw error;
   }
 };
+
+export const getDocRef = (collectionName, docId) => {
+  return doc(db, collectionName, docId)
+}
 
 // ---------- user doc queries ----------
 /**
@@ -123,3 +127,54 @@ export const getPollByRegion = async (region) => {
   }
 };
 // ---------- poll doc queries ----------
+
+export const getWeeklyPoll = async () => {
+  try {
+    const col = collection(db, 'poll');
+    const q = query(col, where(documentId(), 'in', ['weekly-p40-w1','weekly-p40-w2','weekly-p40-w3']))
+    const snap = await getDocs(q)
+    if (!snap.empty) {
+      return snap.docs.map((doc) => ({ ...doc.data(), id: doc.id}));
+    } else {
+      console.log('Empty result fetching weekly polls');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching weekly polls', error);
+    throw error;
+  }
+}
+
+export const submitVote = async (user, pollId, choiceId) => {
+  try {
+    //
+    const id = await addDocument('vote', {
+      choiceId,
+      pollId: doc(db, 'poll', pollId),
+      userId: doc(db, 'user', user.id),
+      region: user.region,
+      votedAt: Timestamp.now()
+    })
+    return id
+  } catch (error) {
+    console.error('Error submitting vote', error);
+    throw error;
+  }
+}
+
+export const getUserVotes = async (user) => {
+  try {
+    const col = collection(db, 'vote');
+    const q = query(col, where('userId', '==', doc(db, 'user', user.id)))
+    const snap = await getDocs(q)
+    if (!snap.empty) {
+      return snap.docs.map((doc) => ({ ...doc.data(), id: doc.id}));
+    } else {
+      console.log('Empty result fetching user votes');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user votes', error);
+    throw error;
+  }
+}

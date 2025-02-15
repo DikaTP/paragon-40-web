@@ -13,7 +13,6 @@ import { UserContext } from "@/app/providers/AuthProvider";
 
 export default function Navigation() {
   const t = useTranslations();
-  const s = useSession();
   const authUser = useContext(UserContext)
     
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +41,7 @@ export default function Navigation() {
           <div className="relative">
             <button type="button" onClick={toggleDropdownProfileOpen} className="text-left flex items-center gap-2">
               <div className="">
-                <p className="font-bold">{authUser?.name || ''}</p>
+                <p className="font-bold max-w-36 text-ellipsis text-nowrap overflow-hidden">{authUser?.name || ''}</p>
                 <p className="text-sm">Region: {authUser?.region || ''}</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
