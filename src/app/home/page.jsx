@@ -28,7 +28,7 @@ export default function HomePage() {
       const t = Math.floor(Date.now() / 1000)
       const c = v.find(o => o.startTime.seconds <= t && o.endTime.seconds >= t)
       setCurrWeeklyPoll(c)
-      console.log(v,t,c)
+      // console.log(v,t,c)
       //TODO: setPollResultViewingKey to current 
     })
   }, [setWeeklyPolls,setCurrWeeklyPoll])
@@ -43,7 +43,7 @@ export default function HomePage() {
     .then(v => {
       setUserVotes(v)
       setIsUserVotesFetched(true)
-      console.log('votes', v)
+      // console.log('votes', v)
     })
   }, [authUser, setUserVotes, setIsUserVotesFetched])
 
@@ -105,7 +105,14 @@ export default function HomePage() {
         </div>
       </div>
       <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
-        <a href="" className="text-xl lg:text-4xl font-bold">{t('HomePage.weeklyQuestion')}</a>
+        <div className="flex justify-between">
+          <a href="" className="text-xl lg:text-4xl font-bold">{t('HomePage.weeklyQuestion')}</a>
+          {currWeeklyPoll && (
+            <div className="flex rounded-2xl bg-white text-violet-500 p-2">
+              {t('HomePage.week')} {currWeeklyPoll.week}
+            </div>
+          )}
+        </div>
         {currWeeklyPoll ? (
           <div className="mt-4">
 
