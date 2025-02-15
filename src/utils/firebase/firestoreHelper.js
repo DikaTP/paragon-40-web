@@ -1,4 +1,15 @@
-import { collection, query, where, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, documentId, Timestamp } from "firebase/firestore";
+import { collection,
+  doc,
+  addDoc,
+  setDoc,
+  updateDoc,
+  getDocs,
+  getDoc,
+  documentId,
+  query,
+  where,
+  Timestamp
+} from "firebase/firestore";
 import db from "@/utils/firebase/firestore"
 
 /**
@@ -19,21 +30,17 @@ export const addDocument = async (collectionName, data) => {
   }
 };
 
-export const updateDocument = async (collectionName, docId, data) => {
+const setDocument = async (collectionName, data, docId) => {
   try {
-    await updateDoc(doc(db, collectionName, docId), data);
-    console.log("Document updated successfully");
-  } catch (error) {
-    console.error("Error updating document: ", error);
-    throw error;
-  }
-};
+    // Add a new document with a predefined id
+    const docCollection = firestore.collection(db, collectionName);
+    const docRef = firestore.doc(docCollection, docId);
+    await firestore.setDoc(docRef, data)
 
-export const deleteDocument = async (collectionName, docId) => {
-  try {
-    await deleteDoc(doc(db, collectionName, docId));
+    console.log("Document written with ID: ", docId);
+    return docId;
   } catch (error) {
-    console.error("Error deleting document: ", error);
+    console.error("Error adding document: ", error);
     throw error;
   }
 };
@@ -147,15 +154,19 @@ export const getWeeklyPoll = async () => {
 
 export const submitVote = async (user, pollId, choiceId) => {
   try {
-    //
-    const id = await addDocument('vote', {
+    // Add a new document with a predefined id
+    const docCollection = collection(db, 'vote');
+    const docId = `${pollId}-${user.id}`
+    const docRef = doc(docCollection, docId);
+    await setDoc(docRef, {
       choiceId,
       pollId: doc(db, 'poll', pollId),
       userId: doc(db, 'user', user.id),
       region: user.region,
       votedAt: Timestamp.now()
     })
-    return id
+
+    return docId
   } catch (error) {
     console.error('Error submitting vote', error);
     throw error;

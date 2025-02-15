@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { UserContext } from '../providers/AuthProvider';
 import { getUserVotes, getWeeklyPoll, submitVote } from '@/utils/firebase/firestoreHelper';
+import clsx from 'clsx';
+import _ from 'lodash';
 
 export default function HomePage() {
   const t = useTranslations();
@@ -63,7 +65,20 @@ export default function HomePage() {
 
   const doSubmitVote = useCallback((pollId, choiceId) => {
     submitVote(authUser, pollId, choiceId)
+    .then(() => {
+      getUserVotes(authUser).then((list) => {
+        setUserVotes(list)
+      })
+    })
   }, [authUser])
+
+  const getSelectedChoice = (pollId) => {
+    let selectedChoice = _.find (userVotes, (userVote) => {
+      return userVote.id == `${pollId}-${authUser.id}`
+    });
+
+    return selectedChoice?.choiceId
+  }
 
   return (
     <div className="flex flex-col max-w-screen-2xl mx-auto py-4 px-4 lg:px-16">
@@ -94,7 +109,10 @@ export default function HomePage() {
               {currWeeklyPoll.choices.map((choice => (
                 <button 
                   type='button' key={choice.key}
-                  className="p-4 rounded-full border border-white hover:bg-white hover:text-[#4A4A4A]"
+                  className={clsx(
+                    "p-4 rounded-full border border-white hover:bg-white hover:text-[#4A4A4A]",
+                    getSelectedChoice(currWeeklyPoll.id) == choice.key ? 'bg-white text-[#4A4A4A]' : ''
+                  )}
                   onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
                 >
                   {choice.text[locale]}
