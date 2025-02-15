@@ -50,7 +50,12 @@
     "invalidEmail": "Please enter a valid email address.",
     "invalidPassword": "Please enter a password.",
     "emailPlaceholder": "Input your email",
-    "passwordPlaceholder": "Input your password"
+    "passwordPlaceholder": "Input your password",
+    "loading": "Loading",
+    "success": "Successfull login",
+    "invalid": "Invalid credentials.",
+    "error": "Failed! please try again",
+    "close": "Close"
   },
   "LocaleSwitch": {
     "id": "Indonesia",

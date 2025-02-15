@@ -133,7 +133,6 @@ export const getPollByRegion = async (region) => {
     throw error;
   }
 };
-// ---------- poll doc queries ----------
 
 export const getWeeklyPoll = async () => {
   try {
@@ -151,6 +150,18 @@ export const getWeeklyPoll = async () => {
     throw error;
   }
 }
+
+export const getOpeningSpeechPoll = async (user) => {
+  try {
+    const docId = 'openingspeech-p40-' + user.region
+    const poll = await getDocument('poll', docId)
+    return poll
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}
+// ---------- poll doc queries ----------
 
 export const submitVote = async (user, pollId, choiceId) => {
   try {

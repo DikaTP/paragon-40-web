@@ -1,12 +1,38 @@
 "use client"
 
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-
+import { useLocale, useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useContext, useEffect, useState } from 'react'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { ChevronDownIcon, UserIcon } from '@heroicons/react/24/outline'
+import { UserContext } from '../providers/AuthProvider'
+import { getOpeningSpeechPoll } from '@/utils/firebase/firestoreHelper'
 
 export default function PreEventPage() {
   const t = useTranslations();
-  
+  const locale = useLocale();
+  const authUser = useContext(UserContext)
+  const [openingSpeechPoll, setOpeningSpeechPoll] = useState(null)
+
+  // fetch data
+  useEffect(() => {
+    if (!authUser?.id) {
+      setOpeningSpeechPoll(null)
+      return
+    }
+
+    getOpeningSpeechPoll(authUser)
+      .then(v => {
+        console.log('open speech poll', v)
+        const t = Math.floor(Date.now() / 1000)
+        if (v.startTime.seconds <= t && v.endTime.seconds >= t) {
+          setOpeningSpeechPoll(v)
+        } else {
+          console.log('poll expired', v)
+        }
+      })
+  }, [authUser, setOpeningSpeechPoll])
+
   return (
     <div className="flex flex-col max-w-screen-2xl mx-auto py-4 px-4 lg:px-16">
       <div className="flex w-full justify-between mb-4 lg:mb-8">
@@ -14,14 +40,53 @@ export default function PreEventPage() {
           <h1 className="text-lg lg:text-7xl font-bold">PRE-EVENT</h1>
         </div>
         <div>
-          <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50] lg:w-[200]'/>
+          <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50] lg:w-[200]' />
         </div>
       </div>
 
       {/* VOTING OPENING SPEECH */}
-      <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
-        <p className="text-xl lg:text-4xl font-bold mb-2">{t('PreEventPage.openingSpeech')}</p>
-        <p className="text-base">{t('PreEventPage.openingSpeechDescription')}?</p>
+      <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4 z-10">
+        {openingSpeechPoll ? (
+          <>
+            <p className="text-xl lg:text-4xl font-bold mb-2">{openingSpeechPoll?.title[locale]}</p>
+            <p className="text-base mb-2">{openingSpeechPoll?.description[locale]}</p>
+            <Menu as="div" className="relative text-left">
+              <div>
+                <MenuButton className="flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+                  <div className="flex">
+                    <UserIcon aria-hidden="true" className="-mr-1 size-4 text-gray-400" />
+                    <div className='ml-2 text-gray-400'>Select team member</div>
+                  </div>
+                  <div className="flex">
+                    <ChevronDownIcon aria-hidden="true" className="-mr-1 size-4 text-gray-400" />
+                  </div>
+                </MenuButton>
+              </div>
+              <MenuItems
+                transition
+                className="absolute mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+              >
+              {openingSpeechPoll.choices.map((choice => (
+                <div className="py-1" key={choice.key}>
+                  <MenuItem>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                    >
+                      {choice.text[locale]}
+                    </a>
+                  </MenuItem>
+                </div>
+              )))}
+              </MenuItems>
+            </Menu>
+          </>
+        ) : (
+          <div className="mt-4 flex justify-center">
+            <p>...</p>
+          </div>
+        )
+        }
       </div>
 
       {/* Timeline */}
@@ -137,7 +202,7 @@ export default function PreEventPage() {
         </div>
       </div>
 
-        {/* ABOUT PARAGONIAN TALKS */}
+      {/* ABOUT PARAGONIAN TALKS */}
       <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
         <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.aboutFestival')} Paragonian Talks</a>
         <div className="mt-5">

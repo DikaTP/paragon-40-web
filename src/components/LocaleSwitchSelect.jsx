@@ -1,7 +1,5 @@
 'use client';
 
-import { CheckIcon, LanguageIcon } from '@heroicons/react/24/solid';
-import * as Select from '@radix-ui/react-select';
 import { useTransition } from 'react';
 import { setUserLocale } from '@/services/locale';
 
