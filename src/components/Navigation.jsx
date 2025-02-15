@@ -89,11 +89,11 @@ export default function Navigation() {
             <NavLink onClick={toggleMobileMenuOpen} href="/main-event">Main Event</NavLink>
           </div>
         </div>
-        <div className="flex flex-grow flex-col p-8 justify-end gap-8">
+        <div className="flex flex-grow flex-col p-8 justify-end gap-4">
           <h4 className="text-lg text-white">Profile</h4>
           <div className="">
-            <p className="text-white">{s.data?.user?.name || ''}</p>
-            <p className="text-white text-sm">Region - {s.data?.user?.region || ''}</p>
+            <p className="text-white">{authUser?.name || ''}</p>
+            <p className="text-white text-sm">Region: {authUser?.region || ''}</p>
           </div>
           <NavLink onClick={toggleMobileMenuOpen} href="/profile">{t('profile')}</NavLink>
 
