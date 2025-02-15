@@ -1,20 +1,32 @@
 'use server';
 
 import { signIn } from '@/auth';
-import { AuthError } from 'next-auth';
- 
+import { isRedirectError } from "next/dist/client/components/redirect-error";
+
 export async function authenticate(prevState, formData) {
   try {
-    await signIn('credentials', formData);
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
-        default:
-          return 'Something went wrong.';
-      }
-    }
-    throw error;
-  }
+		const success = await signIn("credentials", formData)
+		console.log({ prevState, success })
+		return undefined
+	} catch (error) {
+    if (isRedirectError(error)) throw error
+
+    let errMsg = ""
+		if (error instanceof Error) {
+			const { type, cause } = error
+			switch (type) {
+				case "CredentialsSignin":
+					errMsg = "Invalid credentials."
+          break
+				case "CallbackRouteError":
+					errMsg = cause?.err?.toString()
+          break
+				default:
+					errMsg = "Something went wrong."
+          break
+			}
+		}
+
+    return errMsg
+	}
 }
