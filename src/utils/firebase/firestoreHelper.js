@@ -1,4 +1,4 @@
-import { collection, query, where, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, query, where, addDoc, updateDoc, deleteDoc, getDocs, getDoc, doc, Timestamp } from "firebase/firestore";
 import db from "@/utils/firebase/firestore"
 
 /**
@@ -32,7 +32,6 @@ export const updateDocument = async (collectionName, docId, data) => {
 export const deleteDocument = async (collectionName, docId) => {
   try {
     await deleteDoc(doc(db, collectionName, docId));
-    console.log("Document deleted successfully");
   } catch (error) {
     console.error("Error deleting document: ", error);
     throw error;
@@ -43,9 +42,9 @@ export const getDocument = async (collectionName, docId) => {
   try {
     const docSnapshot = await getDoc(doc(db, collectionName, docId));
     if (docSnapshot.exists()) {
-      return docSnapshot.data();
+      return {id: docId, ...docSnapshot.data()};
     } else {
-      throw new Error("Document not found");
+      return null;
     }
   } catch (error) {
     console.error("Error getting document: ", error);
@@ -53,6 +52,7 @@ export const getDocument = async (collectionName, docId) => {
   }
 };
 
+// ---------- user doc queries ----------
 /**
  * Fetch user document by email from Firestore
  * @param {string} email - The email of the user to query
@@ -69,7 +69,6 @@ export const getUserByEmail = async (email) => {
       const userDoc = querySnapshot.docs[0];
       return { id: userDoc.id, ...userDoc.data() };
     } else {
-      console.log('No user found with the given email.');
       return null;
     }
   } catch (error) {
@@ -78,6 +77,31 @@ export const getUserByEmail = async (email) => {
   }
 };
 
+/**
+ * update user's login timestamp
+ * @param {string} docId - The docId of the user to query
+ * @returns {boolean} - Always return true for now
+ */
+export const updateUserLoginTs = async (docId) => {
+  try {
+    const user = await getDocument('user', docId)
+    const nowTs = Timestamp.fromDate(new Date())
+    const firstTs = user.firstLoginAt || nowTs
+    const docRef = doc(db, 'user', docId)
+    await updateDoc(docRef, {
+      firstLoginAt: firstTs,
+      lastLoginAt: nowTs
+    })
+
+    return true
+  } catch (error) {
+    console.error('Error on updateUserLoginTs');
+    throw error;
+  }
+};
+// ---------- user doc queries ----------
+
+// ---------- poll doc queries ----------
 /**
  * Fetch poll documents by region from Firestore
  * @param {string} region - The region of the user to query
@@ -91,7 +115,6 @@ export const getPollByRegion = async (region) => {
     if (!snap.empty) {
       return snap.docs.map((doc) => ({ ...doc.data(), id: doc.id}));
     } else {
-      console.log('No polls found based on region given.');
       return null;
     }
   } catch (error) {
@@ -99,3 +122,4 @@ export const getPollByRegion = async (region) => {
     throw error;
   }
 };
+// ---------- poll doc queries ----------
