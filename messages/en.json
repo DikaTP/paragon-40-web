@@ -11,7 +11,9 @@
     "weeklyQuestion": "Weekly P40 Question",
     "votingResult": "Voting Result",
     "week": "Week",
-    "weekShort": "W"
+    "weekShort": "W",
+    "vote": "Vote",
+    "votingInProgress": "Voting still going"
   },
   "ProfilePage": {
     "title": "Profile",

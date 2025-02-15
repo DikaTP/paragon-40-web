@@ -1,15 +1,17 @@
 "use client"
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { UserContext } from '../providers/AuthProvider';
 import { getUserVotes, getWeeklyPoll, submitVote } from '@/utils/firebase/firestoreHelper';
 import clsx from 'clsx';
 import _ from 'lodash';
+import { CheckIcon, Square3Stack3DIcon } from '@heroicons/react/24/outline';
 
 export default function HomePage() {
   const t = useTranslations();
+  const format = useFormatter();
   const locale = useLocale();
   const authUser = useContext(UserContext)
   const [weeklyPolls, setWeeklyPolls] = useState([])
@@ -27,6 +29,7 @@ export default function HomePage() {
       const c = v.find(o => o.startTime.seconds <= t && o.endTime.seconds >= t)
       setCurrWeeklyPoll(c)
       console.log(v,t,c)
+      //TODO: setPollResultViewingKey to current 
     })
   }, [setWeeklyPolls,setCurrWeeklyPoll])
 
@@ -47,8 +50,10 @@ export default function HomePage() {
   const pollResult = useMemo(() => {
     const poll = weeklyPolls.find(o => o.week == pollResultViewingKey);
     if (!poll) return null
-    let highestVote, highestVoteKey = 0
-    Object.entries(poll.result?.votes).forEach((k,v) => {
+    let highestVote = 0
+    let highestVoteKey = null
+    Object.entries(poll.result?.votes).forEach(([k,v]) => {
+      v = parseInt(v)
       if (v > highestVote) {
         highestVote = v
         highestVoteKey = k
@@ -109,13 +114,13 @@ export default function HomePage() {
               {currWeeklyPoll.choices.map((choice => (
                 <button 
                   type='button' key={choice.key}
-                  className={clsx(
-                    "p-4 rounded-full border border-white hover:bg-white hover:text-[#4A4A4A]",
-                    getSelectedChoice(currWeeklyPoll.id) == choice.key ? 'bg-white text-[#4A4A4A]' : ''
-                  )}
+                  className="p-4 rounded-full border border-white flex justify-between items-center hover:bg-white hover:text-[#4A4A4A]"
                   onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
                 >
-                  {choice.text[locale]}
+                  <div className="flex-grow text-center">{choice.text[locale]}</div>
+                  {getSelectedChoice(currWeeklyPoll.id) == choice.key &&
+                    <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
+                  }
                 </button>
               )))}
             </div>
@@ -134,36 +139,58 @@ export default function HomePage() {
             {weeklyPolls?.map(poll => (
               <button
                 type="button" key={poll.week}
-                className='rounded-full border px-2 text-xs lg:px-4 lg:py-2 lg:text-sm'
+                className={
+                  clsx(
+                    'rounded-full border px-2 border-purple-700 text-xs lg:px-4 lg:py-2 lg:text-sm disabled:text-gray-600 disabled:border-gray-600',
+                    pollResultViewingKey == poll.week ? 'bg-purple-700 ' : 'text-purple-700'
+                  )
+                }
                 onClick={() => setPollResultViewingKey(poll.week)}
+                disabled={poll.startTime.seconds > Math.floor(Date.now() / 1000)}
               >{t('HomePage.weekShort')}{poll.week}</button>
             ))}
           </div>
           <div className="flex lg:justify-end col-span-3 lg:col-span-2">
             <div className="flex rounded-2xl bg-white text-violet-500 p-2">
-              Total Vote: <div className='min-w-10 text-center'>{pollResult?.result?.totalVote || '-'}</div>
+              Total Vote: <div className='min-w-10 text-center ml-2'>{pollResult?.result?.totalVote ? format.number(pollResult?.result?.totalVote) : '-'}</div>
             </div>
           </div>
         </div>
-        {pollResult ? (
+        {pollResult?.endTime?.seconds < Math.floor(Date.now() / 1000) ? (
           <div className="mt-4">
 
             <p className='mb-4'>Q: {pollResult.description[locale]}</p>
-            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 items-center">
               {pollResult.choices.map((choice => (
                 <div 
                   key={choice.key}
-                  className="p-4 rounded-full border border-white"
+                  className={pollResult.result.highestVoteKey == choice.key ? "p-3 bg-yellow-300 rounded-3xl" : ""}
                 >
-                  {choice.text[locale]}
+                  <div className={clsx("p-4 rounded-full border border-white flex justify-between items-center", pollResult.result.highestVoteKey == choice.key ? "bg-white text-[#4A4A4A]" : "")}>
+                    <div className="flex-grow text-center">{choice.text[locale]}</div>
+                    {getSelectedChoice(pollResult.id) == choice.key &&
+                      <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
+                    }
+                  </div>
+                  <div className="flex justify-center">
+                    <div className={clsx("mt-2 px-4 py-2 rounded-full flex gap-2",pollResult.result.highestVoteKey == choice.key ? "" : "bg-[#ABAEFF]" )}>
+                      { pollResult.result.highestVoteKey == choice.key && (
+                        <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M4.21 13.89L3 23L8 20L13 23L11.79 13.88M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                      {`${pollResult.result.votes[choice.key] / pollResult.result.totalVote * 100}% (${format.number(pollResult.result.votes[choice.key])} ${t('HomePage.vote')})`}
+                    </div>
+                  </div>
                 </div>
               )))}
             </div>
           </div>
           
         ) : (
-          <div className="mt-4 flex justify-center">
-            <p>kosong</p>
+          <div className="m-4 lg:m-8 flex flex-col justify-center items-center gap-2">
+            <Square3Stack3DIcon className='size-16 text-slate-200' />
+            <p className='text-xl text-center'>{t('HomePage.votingInProgress')}</p>
           </div>
         )}
       </div>

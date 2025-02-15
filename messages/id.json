@@ -11,7 +11,9 @@
     "weeklyQuestion": "Pertanyaan P40 Mingguan",
     "votingResult": "Hasil Suara",
     "week": "Minggu",
-    "weekShort": "M"
+    "weekShort": "M",
+    "vote": "Suara",
+    "votingInProgress": "Pengambilan suara masih berlangsung!"
   },
   "ProfilePage": {
     "title": "Profil",
