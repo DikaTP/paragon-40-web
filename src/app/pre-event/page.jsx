@@ -2,36 +2,57 @@
 
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useCallback } from 'react'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { ChevronDownIcon, UserIcon } from '@heroicons/react/24/outline'
+import { CheckIcon, ChevronDownIcon, UserIcon } from '@heroicons/react/24/outline'
 import { UserContext } from '../providers/AuthProvider'
-import { getOpeningSpeechPoll } from '@/utils/firebase/firestoreHelper'
+import { getOpeningSpeechPoll, getOpeningSpeechVote, submitVote } from '@/utils/firebase/firestoreHelper'
+import clsx from 'clsx'
 
 export default function PreEventPage() {
   const t = useTranslations();
   const locale = useLocale();
   const authUser = useContext(UserContext)
   const [openingSpeechPoll, setOpeningSpeechPoll] = useState(null)
+  const [openingSpeechVote, setOpeningSpeechVote] = useState(null)
+  const [showOpeningSpeechPoll, setShowOpeningSpeechPoll] = useState(true)
 
   // fetch data
   useEffect(() => {
     if (!authUser?.id) {
       setOpeningSpeechPoll(null)
+      setOpeningSpeechVote(null)
       return
     }
 
     getOpeningSpeechPoll(authUser)
-      .then(v => {
-        console.log('open speech poll', v)
-        const t = Math.floor(Date.now() / 1000)
-        if (v.startTime.seconds <= t && v.endTime.seconds >= t) {
-          setOpeningSpeechPoll(v)
-        } else {
-          console.log('poll expired', v)
-        }
+    .then(poll => {
+      const t = Math.floor(Date.now() / 1000)
+      if (poll.startTime.seconds <= t && poll.endTime.seconds >= t) {
+        setOpeningSpeechPoll(poll)
+        return poll
+      } else {
+        console.log('poll expired', poll)
+        return null
+      }
+    }).then(poll => {
+      if(poll) {
+        getOpeningSpeechVote(authUser, poll.id).then(vote => {
+          setOpeningSpeechVote(vote)
+        })
+      }
+    })
+  }, [authUser, setOpeningSpeechPoll, setOpeningSpeechVote])
+  
+  const selectChoice = useCallback((pollId, choiceId) => {
+      submitVote(authUser, pollId, choiceId)
+      .then(() => {
+        getOpeningSpeechVote(authUser, pollId).then((vote) => {
+          setOpeningSpeechVote(vote)
+        })
       })
-  }, [authUser, setOpeningSpeechPoll])
+
+    }, [authUser])
 
   return (
     <div className="flex flex-col max-w-screen-2xl mx-auto py-4 px-4 lg:px-16">
@@ -50,43 +71,33 @@ export default function PreEventPage() {
           <>
             <p className="text-xl lg:text-4xl font-bold mb-2">{openingSpeechPoll?.title[locale]}</p>
             <p className="text-base mb-2">{openingSpeechPoll?.description[locale]}</p>
-            <Menu as="div" className="relative text-left">
-              <div>
-                <MenuButton className="flex w-full justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-                  <div className="flex">
-                    <UserIcon aria-hidden="true" className="-mr-1 size-4 text-gray-400" />
-                    <div className='ml-2 text-gray-400'>Select team member</div>
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
+            {openingSpeechPoll.choices.map((choice => (
+                <button 
+                  type='button' key={choice.key}
+                  className=
+                    {clsx(openingSpeechVote?.choiceId == choice.key ? "bg-white text-[#4A4A4A] select-none pointer-events-none" :
+                      "hover:ring-2 hover:ring-inset hover:ring-secondary-100 hover:border-secondary-100"
+                    , "p-4 rounded-2xl border border-white flex flex-col gap-2")}
+                  onClick={() => {selectChoice(openingSpeechPoll.id, choice.key)}}
+                >
+                  <div className='px-4 flex justify-between'>
+                    <div>{choice.name[locale]}</div>
+                    {openingSpeechVote?.choiceId == choice.key &&
+                      <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
+                    }
                   </div>
-                  <div className="flex">
-                    <ChevronDownIcon aria-hidden="true" className="-mr-1 size-4 text-gray-400" />
-                  </div>
-                </MenuButton>
-              </div>
-              <MenuItems
-                transition
-                className="absolute mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-              >
-              {openingSpeechPoll.choices.map((choice => (
-                <div className="py-1" key={choice.key}>
-                  <MenuItem>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
-                    >
-                      {choice.text[locale]}
-                    </a>
-                  </MenuItem>
-                </div>
+                  <div className='text-left px-4 font-bold'>{choice.position[locale]}</div>
+                  <div className='text-left px-4 text-sm'>{choice.description[locale]}</div>
+                </button>
               )))}
-              </MenuItems>
-            </Menu>
+            </div>
           </>
         ) : (
           <div className="mt-4 flex justify-center">
             <p>...</p>
           </div>
-        )
-        }
+        )}
       </div>
 
       {/* Timeline */}

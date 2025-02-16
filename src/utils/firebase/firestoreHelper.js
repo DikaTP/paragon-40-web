@@ -200,3 +200,14 @@ export const getUserVotes = async (user) => {
     throw error;
   }
 }
+
+export const getOpeningSpeechVote = async (user, pollId) => {
+  try {
+    const docId = `${pollId}-${user.id}`
+    const vote = await getDocument('vote', docId)
+    return vote
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}

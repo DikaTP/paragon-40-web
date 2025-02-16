@@ -121,7 +121,8 @@ export default function HomePage() {
               {currWeeklyPoll.choices.map((choice => (
                 <button 
                   type='button' key={choice.key}
-                  className="p-4 rounded-full border border-white flex justify-between items-center hover:bg-white hover:text-[#4A4A4A]"
+                  className={clsx(getSelectedChoice(currWeeklyPoll.id) == choice.key ? "select-none pointer-events-none" : ""
+                    , "p-4 rounded-full border border-white flex justify-between items-center hover:bg-white hover:text-[#4A4A4A]")}
                   onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
                 >
                   <div className="flex-grow text-center">{choice.text[locale]}</div>
