@@ -3,8 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useContext, useEffect, useState, useCallback } from 'react'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { CheckIcon, ChevronDownIcon, UserIcon } from '@heroicons/react/24/outline'
+import { CheckIcon } from '@heroicons/react/24/outline'
 import { UserContext } from '../providers/AuthProvider'
 import { getOpeningSpeechPoll, getOpeningSpeechVote, submitVote } from '@/utils/firebase/firestoreHelper'
 import clsx from 'clsx'
@@ -15,7 +14,6 @@ export default function PreEventPage() {
   const authUser = useContext(UserContext)
   const [openingSpeechPoll, setOpeningSpeechPoll] = useState(null)
   const [openingSpeechVote, setOpeningSpeechVote] = useState(null)
-  const [showOpeningSpeechPoll, setShowOpeningSpeechPoll] = useState(true)
 
   // fetch data
   useEffect(() => {
