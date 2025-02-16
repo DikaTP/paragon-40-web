@@ -66,20 +66,20 @@ export default function PreEventPage() {
 
         {/* VOTING OPENING SPEECH */}
         <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4 z-10">
+          <p className="text-xl lg:text-4xl font-bold mb-2">{t('PreEventPage.openingSpeech')}</p>
           {openingSpeechPoll ? (
             <>
-              <p className="text-xl lg:text-4xl font-bold mb-2">{openingSpeechPoll?.title[locale]}</p>
-              <p className="text-base mb-2">{openingSpeechPoll?.description[locale]}</p>
+              <p className="text-base lg:text-2xl mb-2">Q: {openingSpeechPoll?.description[locale]}</p>
               <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
               {openingSpeechPoll.choices.map((choice => (
                   <button 
                       type='button' key={choice.key}
                       className={clsx(openingSpeechVote?.choiceId == choice.key ? "bg-white text-[#4A4A4A] select-none pointer-events-none" :
-                        "hover:ring-2 hover:ring-inset hover:ring-secondary-300 hover:border-secondary-300"
+                        "hover:ring-2 hover:ring-inset hover:ring-brandorange hover:border-brandorange"
                       , "p-4 rounded-full border border-white flex items-center gap-2")}
                       onClick={() => {selectChoice(openingSpeechPoll.id, choice.key)}}
                     >
-                      <div className="flex-grow text-left">{choice.text[locale]}</div>
+                      <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
                       {openingSpeechVote?.choiceId == choice.key &&
                         <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
                       }

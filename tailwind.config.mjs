@@ -18,6 +18,7 @@ export default {
           300: '#4d00ff',
           400: '#3c00c6',
         },
+        brandorange: "#fe9f33"
       },
     },
   },
