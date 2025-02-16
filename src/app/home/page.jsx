@@ -119,11 +119,12 @@ export default function HomePage() {
                 {currWeeklyPoll.choices.map((choice => (
                   <button 
                     type='button' key={choice.key}
-                    className={clsx(getSelectedChoice(currWeeklyPoll.id) == choice.key ? "select-none pointer-events-none" : ""
-                      , "p-4 rounded-full border border-white flex justify-between items-center hover:bg-white hover:text-[#4A4A4A]")}
+                    className={clsx(getSelectedChoice(currWeeklyPoll.id) == choice.key ? "bg-white text-[#4A4A4A] select-none pointer-events-none" :
+                      "hover:ring-2 hover:ring-inset hover:ring-secondary-300 hover:border-secondary-300"
+                    , "p-4 rounded-full border border-white flex items-center gap-2")}
                     onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
                   >
-                    <div className="flex-grow text-center">{choice.text[locale]}</div>
+                    <div className="flex-grow text-left">{choice.text[locale]}</div>
                     {getSelectedChoice(currWeeklyPoll.id) == choice.key &&
                       <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
                     }
