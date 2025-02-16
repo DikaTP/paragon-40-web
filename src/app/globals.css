@@ -24,6 +24,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: radial-gradient(94.18% 180.6% at 1.74% 2.15%, #EAEAEA 14.08%, #F0D4E1 37.11%, #ADE0F1 100%);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .bg-transparent-nav {
@@ -34,4 +42,47 @@ body {
   background: linear-gradient(90deg, rgba(90, 148, 201, 0.4) 43.5%, rgba(242, 115, 244, 0.4) 100%);
   backdrop-filter: blur(40px);
   box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.bg-kv-2 {
+  position: relative;
+}
+
+.bg-kv-2::before {
+  content: " ";
+  background-image: url('/bg-kv-2.webp');
+  background-position: top 2rem center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.bg-kv-3 {
+  position: relative;
+}
+
+.bg-kv-3::before {
+  content: " ";
+  background-image: url('/bg-kv-3.webp');
+  background-position: top -200px left 30%;
+  background-size: 400%;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@media (width >= 1024) {
+  .bg-kv-3::before {
+    background-size: 85%;
+    background-position: top 150px right -100%;
+
+  }
 }

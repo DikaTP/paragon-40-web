@@ -67,7 +67,7 @@ export default function Navigation() {
           </button>
         </div>
       </div>
-      <div className={clsx("absolute top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-10", !isMobileMenuOpen && 'hidden' )}>
+      <div className={clsx("absolute top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-50", !isMobileMenuOpen && 'hidden' )}>
         <div className="p-4 flex justify-between">
           <Image src="/p40-logo.png" alt="logo" width="60" height="39"/>
           <button type='button' className='inline-flex items-center text-white p-2 justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500' onClick={toggleMobileMenuOpen}>
