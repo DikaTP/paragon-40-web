@@ -60,13 +60,19 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/home';
   const [showModalLogin, setModalLogin] = useState(false)
+  const [modalLoginCode, setModalLoginCode] = useState(undefined)
   const [actionData, formAction, isPending] = useActionState(
     authenticate,
     undefined,
   );
 
   useEffect(() => {
-    if (isPending) setModalLogin(true)
+    if (isPending) {
+      setModalLogin(true)
+      setModalLoginCode(undefined)
+    } else {
+      setModalLoginCode(actionData?.code)
+    }
   }, [actionData, isPending])
 
   const modalHandler = (showModal) => {
@@ -128,7 +134,7 @@ export default function LoginForm() {
       {showModalLogin && (
         <div className="absolute top-0 left-0 m-0 p-0 w-full h-full inset-0 flex justify-center items-center bg-gray-700 bg-opacity-25">
           <div className="bg-white bg-opacity-25 backdrop-filter backdrop-blur-lg px-24 py-16 rounded-xl shadow-xl flex flex-col items-center">
-            <LoginModalContent code={actionData?.code} modalHandler={modalHandler} />
+            <LoginModalContent code={modalLoginCode} modalHandler={modalHandler} />
           </div>
         </div>
       )}
