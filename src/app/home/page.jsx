@@ -96,7 +96,7 @@ export default function HomePage() {
         </div>
         <div className="flex gap-2 lg:gap-4 text-xs lg:text-base my-2 lg:my-4">
           <div className='bg-[#0321FF] py-4 px-4 lg:px-8 rounded-full text-white'>
-            <span className='font-bold'>Pre-Event</span> | 1-27 Feb 2025
+            <span className='font-bold'>Pre-Event</span> | 1-21 Feb 2025
           </div>
           <div className='bg-[#0321FF] py-4 px-4 lg:px-8 rounded-full text-white'>
             <span className='font-bold'>Main-Event</span> | 28 Feb 2025
