@@ -7,6 +7,13 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import { UserContext } from '../providers/AuthProvider'
 import { getOpeningSpeechPoll, getOpeningSpeechVote, submitVote } from '@/utils/firebase/firestoreHelper'
 import clsx from 'clsx'
+import {Swiper,SwiperSlide}  from 'swiper/react'
+import {Navigation, Pagination} from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 
 export default function PreEventPage() {
   const t = useTranslations();
@@ -206,6 +213,24 @@ export default function PreEventPage() {
             </div>
           </div>
         </div>
+
+        <div className="w-full my-2 lg:my-4">
+          <Swiper
+            className='rounded-3xl'
+            modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}
+          >
+            <SwiperSlide>
+              <Image src="/fpt1.webp" width={1920} height={921} alt='Festival Paragonian Talk Slide 1' />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image src="/fpt2.webp" width={1920} height={921} alt='Festival Paragonian Talk Slide 2' />
+            </SwiperSlide>
+          </Swiper>
+        
+        </div>
+
 
         {/* ABOUT PARAGONIAN TALKS */}
         <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
