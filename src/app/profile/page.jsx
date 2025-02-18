@@ -19,7 +19,7 @@ export default function ProfilePage() {
             <h1 className="text-lg lg:text-7xl font-bold">PROFILE</h1>
           </div>
           <div>
-            <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50] lg:w-[200]'/>
+            <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50px] lg:w-[200px]'/>
           </div>
         </div>
         <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">

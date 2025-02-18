@@ -17,7 +17,7 @@ export default function AboutPage() {
             <h1 className="text-lg lg:text-7xl font-bold">{t('AboutPage.title')}</h1>
           </div>
           <div>
-            <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50] lg:w-[200]'/>
+            <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50px] lg:w-[200px]'/>
           </div>
         </div>
         <div className="grid grid-cols-4 gap-4">

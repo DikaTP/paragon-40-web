@@ -29,7 +29,7 @@ export default function Navigation() {
   return (
     <div className="">
       <div className="mx-auto flex max-w-screen-2xl items-end justify-between py-4 px-4 lg:px-16 lg:mb-8">
-        <Image src="/p40-logo.png" alt="logo" width="100" height="67" className='w-[60] lg:w-[100]' />
+        <Image src="/p40-logo.png" alt="logo" width="100" height="67" className='w-[60px] lg:w-[100px]' />
         <div className="hidden lg:block">
           <nav className="flex gap-6">
             <NavLink href="/home">{t('home')}</NavLink>
@@ -68,7 +68,7 @@ export default function Navigation() {
           </button>
         </div>
       </div>
-      <div className={clsx("absolute top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-50 static", !isMobileMenuOpen && 'hidden' )}>
+      <div className={clsx("fixed top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-50 ", !isMobileMenuOpen && 'hidden' )}>
         <div className="p-4 flex justify-between">
           <Image src="/p40-logo.png" alt="logo" width="60" height="39"/>
           <button type='button' className='inline-flex items-center text-white p-2 justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500' onClick={toggleMobileMenuOpen}>
