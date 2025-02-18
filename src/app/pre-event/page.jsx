@@ -122,7 +122,7 @@ export default function PreEventPage() {
               <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
                 <div className="px-7 bg-blue-700 rounded-full w-65 ">
                   <p className="text-base">Pre-event:</p>
-                  <p className="text-base">Peresmian of Paragon HQ</p>
+                  <p className="text-base">Peresmian Paragon HQ</p>
                 </div>
               </div>
               <div className="pl-3">
