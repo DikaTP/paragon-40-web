@@ -88,58 +88,59 @@ export default function MainEventPage() {
         </div>
 
         {/* Do n Dont's */}
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
-          <div className="grid grid-cols-2 gap-8">
-            <div className="col-span-full lg:col-span-1">
-              <h3 className="text-4xl lg:text-6xl text-white mb-8">Do</h3>
-              <div className="grid grid-cols-2 gap-6 lg:px-6">
-                {Array.from({ length: 4 }).map((_, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="flex flex-row gap-3 items-center"
-                    >
-                      <div className="bg-gray-300 size-10 lg:size-16"></div>
-                      <span className="text-white text-xl lg:text-3xl">list {index + 1}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="col-span-full lg:col-span-1">
-              <h3 className="text-4xl lg:text-6xl text-white mb-8">Dont's</h3>
-              <div className="grid grid-cols-2 gap-6 lg:px-6">
-                {Array.from({ length: 4 }).map((_, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="flex flex-row gap-3 items-center"
-                    >
-                      <div className="bg-gray-300 size-10 lg:size-16"></div>
-                      <span className="text-white text-xl lg:text-3xl">list {index + 1}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="mt-14">
-            <h4 className="font-semibold text-3xl text-white mb-4">
-              What to bring
-            </h4>
-            <div className="flex flex-row gap-3 items-center">
-              {goods.map((item, index) => (
-                <div
-                  className="flex border border-white py-1 px-3 rounded-full text-white"
-                  key={index}
-                >
-                  {item}
+        {false && 
+          <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+            <div className="grid grid-cols-2 gap-8">
+              <div className="col-span-full lg:col-span-1">
+                <h3 className="text-4xl lg:text-6xl text-white mb-8">Do</h3>
+                <div className="grid grid-cols-2 gap-6 lg:px-6">
+                  {Array.from({ length: 4 }).map((_, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex flex-row gap-3 items-center"
+                      >
+                        <div className="bg-gray-300 size-10 lg:size-16"></div>
+                        <span className="text-white text-xl lg:text-3xl">list {index + 1}</span>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
+              </div>
+              <div className="col-span-full lg:col-span-1">
+                <h3 className="text-4xl lg:text-6xl text-white mb-8">Dont's</h3>
+                <div className="grid grid-cols-2 gap-6 lg:px-6">
+                  {Array.from({ length: 4 }).map((_, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex flex-row gap-3 items-center"
+                      >
+                        <div className="bg-gray-300 size-10 lg:size-16"></div>
+                        <span className="text-white text-xl lg:text-3xl">list {index + 1}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="mt-14">
+              <h4 className="font-semibold text-3xl text-white mb-4">
+                What to bring
+              </h4>
+              <div className="flex flex-row gap-3 items-center">
+                {goods.map((item, index) => (
+                  <div
+                    className="flex border border-white py-1 px-3 rounded-full text-white"
+                    key={index}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-
+        }
       </div>
     </div>
   );
