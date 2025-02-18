@@ -140,7 +140,7 @@ export default function PreEventPage() {
               </div>
               <div className="pl-3">
                 <p>February 21st, 2025</p>
-                <p>(08.30-10.30 MST)</p>
+                <p>(08.30-10.30 MYT)</p>
                 <p className='font-bold'>Malaysia</p>
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function PreEventPage() {
                 </div>
                 <div className="pl-3">
                   <p>February 21st, 2025</p>
-                  <p>(08.30-10.30 WIB)</p>
+                  <p>(08.30-10.30 MYT)</p>
                 </div>
               </div>
             </div>
