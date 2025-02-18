@@ -58,7 +58,8 @@ function LoginModalContent(props) {
 export default function LoginForm() {
   const t = useTranslations('LoginPage');
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/home';
+  // const callbackUrl = searchParams.get('callbackUrl') || '/home';
+  const callbackUrl = '/';
   const [showModalLogin, setModalLogin] = useState(false)
   const [modalLoginCode, setModalLoginCode] = useState(undefined)
   const [actionData, formAction, isPending] = useActionState(
