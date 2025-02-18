@@ -27,7 +27,7 @@ export default function AboutPage() {
              Your browser does not support the video.
           </video>
           <div className="bg-kv-gradient col-span-4 lg:col-span-3 rounded-3xl">
-            <div className="p-6  text-white">
+            <div className="p-6 lg:p-8 text-white">
               <h1 className="text-4xl lg:text-6xl font-bold mb-10">UNLOCKING<br />NEW THINKING</h1>
               <p className="text-base mb-5">{t('AboutPage.description1')}</p>
               <p className="text-base mb-5">{t("AboutPage.description2")}</p>

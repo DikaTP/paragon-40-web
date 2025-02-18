@@ -21,20 +21,20 @@ export default function MainEventPage() {
             <Image src="/game-on-logo.png" alt="logo" width="200" height="128" className='w-[50] lg:w-[200]' />
           </div>
         </div>
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <div className="grid grid-cols-2 gap-8">
-            <div className="flex flex-col justify-between col-span-full lg:col-span-1">
+            <div className="flex flex-col justify-between col-span-full lg:col-span-1 lg:p-6 lg:pl-10">
               <div className="flex flex-col gap-3 mb-8">
                 <span className="font-medium text-6xl max-w-xs">
-                  COMING SOON
+                  COMING <span className="text-stroke">SOON</span>
                 </span>
-                <span className="font-semibold text-base">
-                  See you on February 28th, 2025 !
+                <span className="font-semibold text-xl">
+                  {t("MainEventPage.seeYou")}
                 </span>
               </div>
               <div className="flex flex-col gap-3">
                 <span className="font-semibold text-base">
-                  Offline in each Work Area
+                  {t("MainEventPage.offlineArea")}
                 </span>
                 <div className="flex flex-row gap-4 items-center flex-wrap">
                   {schedules.map((item, index) => (
@@ -59,7 +59,7 @@ export default function MainEventPage() {
           </div>
         </div>
         {/* Location */}
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <h2 className="text-4xl lg:text-6xl mb-5">LOCATION</h2>
           <div className="grid grid-cols-2 gap-8">
             <div className="col-span-full lg:col-span-1">
@@ -89,7 +89,7 @@ export default function MainEventPage() {
 
         {/* Do n Dont's */}
         {false && 
-          <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+          <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
             <div className="grid grid-cols-2 gap-8">
               <div className="col-span-full lg:col-span-1">
                 <h3 className="text-4xl lg:text-6xl text-white mb-8">Do</h3>

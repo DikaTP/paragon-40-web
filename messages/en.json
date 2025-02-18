@@ -14,7 +14,8 @@
     "weekShort": "W",
     "vote": "Vote",
     "votingInProgress": "Voting still going",
-    "voteSubmited": "Thank you for choosing!"
+    "voteSubmited": "Thank you for choosing!",
+    "reachUs": "If you have any questions or require assistance, feel free to reach out to us."
   },
   "ProfilePage": {
     "title": "Profile",
@@ -40,7 +41,9 @@
     "festivalDescription4": "From the seniors we can learn about grit, the struggles that made us what we are today, the spirit that is maintained and the mutual cooperation that is applied. From the younger ones we can learn about relevance to trends, how generations evolve, and how technology transforms today."
   },
   "MainEventPage": {
-    "title": "MAIN EVENT"
+    "title": "MAIN EVENT",
+    "seeYou": "See you on February 28th, 2025!",
+    "offlineArea": "Offline in each Work Area"
   },
   "LoginPage": {
     "titleHighlight": "40 Years",

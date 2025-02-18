@@ -106,7 +106,7 @@ export default function HomePage() {
             <span className='font-bold'>Main-Event</span> | 28 Feb 2025
           </div>
         </div>
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <div className="flex justify-between">
             <a href="" className="text-xl lg:text-4xl font-bold">{t('HomePage.weeklyQuestion')}</a>
             {currWeeklyPoll && (
@@ -153,7 +153,7 @@ export default function HomePage() {
             </div>
           )}
         </div>
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <div className="grid grid-cols-6 gap-y-4">
             <a href="" className="text-xl lg:text-4xl font-bold col-span-3 lg:col-span-2">{t('HomePage.votingResult')}</a>
             <div className="flex gap-1 lg:gap-2 items-center justify-center col-span-3 lg:col-span-2">
@@ -220,6 +220,14 @@ export default function HomePage() {
             <source src="https://storage.googleapis.com/paragon-p40-cdn/movie/1080%20landscape.mp4" type="video/mp4"/>
              Your browser does not support the video.
           </video>
+        </div>
+
+        <div className="text-center mt-8">
+          <p className='mb-4'>{t("HomePage.reachUs")}</p>
+          <div className="flex flex-wrap justify-center gap-1">
+            <p className='text-nowrap'><strong>Karina Nugraha</strong> (<a href='tel:+62 878-8077-4718' className='text-blue-700 underline'>+62 878-8077-4718</a> ),</p>
+            <p className='text-nowrap'><strong>Wira</strong> (<a href="+62 811-3831-7848" className='text-blue-700 underline'>+62 811-3831-7848</a>)</p>
+          </div>
         </div>
 
       </div>

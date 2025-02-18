@@ -34,6 +34,11 @@ main {
   flex-direction: column;
 }
 
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+}
+
 .bg-transparent-nav {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, rgba(186, 229, 255, 0.3) 45.78%);
 }

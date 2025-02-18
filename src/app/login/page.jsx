@@ -41,7 +41,7 @@ export default function LoginPage() {
             style={{ height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'left' }} />
         </div>
       </div>
-      <Image src="/game-on-logo.png" alt="logo" className="w-40 absolute top-6 lg:top-auto lg:bottom-6 right-6" width="200" height="128" />
+      <Image src="/game-on-logo.png" alt="logo" className="w-20 lg:w-40 absolute top-6 lg:top-auto lg:bottom-6 right-6" width="200" height="128" />
     </div>
   );
 }

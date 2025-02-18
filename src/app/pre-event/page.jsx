@@ -76,7 +76,7 @@ export default function PreEventPage() {
         </div>
 
         {/* VOTING OPENING SPEECH */}
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4 z-10">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4 z-10">
           <p className="text-xl lg:text-4xl font-bold mb-2">{t('PreEventPage.openingSpeech')}</p>
           {openingSpeechPoll ? (
             isUserVotesFetched && (
@@ -120,7 +120,7 @@ export default function PreEventPage() {
         </div>
 
         {/* Timeline */}
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.timeline')}</a>
           <div className="">
             <div className="relative pl-8 lg:pl-24 py-6 group">
@@ -251,7 +251,7 @@ export default function PreEventPage() {
 
 
         {/* ABOUT PARAGONIAN TALKS */}
-        <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.aboutFestival')} Paragonian Talks</a>
           <div className="mt-5">
             <p className="text-base mb-3">{t('PreEventPage.festivalDescription1')}</p>
