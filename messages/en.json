@@ -13,7 +13,8 @@
     "week": "Week",
     "weekShort": "W",
     "vote": "Vote",
-    "votingInProgress": "Voting still going"
+    "votingInProgress": "Voting still going",
+    "voteSubmited": "Thank you for choosing!"
   },
   "ProfilePage": {
     "title": "Profile",

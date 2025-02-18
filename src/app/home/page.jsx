@@ -7,7 +7,7 @@ import { UserContext } from '../providers/AuthProvider';
 import { getUserVotes, getWeeklyPoll, submitVote } from '@/utils/firebase/firestoreHelper';
 import clsx from 'clsx';
 import _ from 'lodash';
-import { CheckIcon, Square3Stack3DIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, CheckIcon, Square3Stack3DIcon } from '@heroicons/react/24/outline';
 
 export default function HomePage() {
   const t = useTranslations();
@@ -18,6 +18,8 @@ export default function HomePage() {
   const [currWeeklyPoll, setCurrWeeklyPoll] = useState(null)
   const [pollResultViewingKey, setPollResultViewingKey] = useState(1)
   const [userVotes, setUserVotes] = useState([])
+  const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
+  const [isUserVoted, setIsUserVoted] = useState(false)
 
   // fetch data
   useEffect(() => {
@@ -40,9 +42,10 @@ export default function HomePage() {
     getUserVotes(authUser)
     .then(v => {
       setUserVotes(v)
+      setIsUserVotesFetched(true)
       // console.log('votes', v)
     })
-  }, [authUser, setUserVotes])
+  }, [authUser, setUserVotes, setIsUserVotesFetched])
 
   const pollResult = useMemo(() => {
     const poll = weeklyPolls.find(o => o.week == pollResultViewingKey);
@@ -68,11 +71,12 @@ export default function HomePage() {
   const doSubmitVote = useCallback((pollId, choiceId) => {
     submitVote(authUser, pollId, choiceId)
     .then(() => {
-      getUserVotes(authUser).then((list) => {
-        setUserVotes(list)
-      })
+      setIsUserVoted(true)
+      // getUserVotes(authUser).then((list) => {
+      //   setUserVotes(list)
+      // })
     })
-  }, [authUser])
+  }, [authUser, setIsUserVoted])
 
   const getSelectedChoice = (pollId) => {
     let selectedChoice = _.find (userVotes, (userVote) => {
@@ -112,26 +116,37 @@ export default function HomePage() {
             )}
           </div>
           {currWeeklyPoll ? (
-            <div className="mt-4">
+            isUserVotesFetched && (
+              (isUserVoted || getSelectedChoice(currWeeklyPoll.id)) ? (
+                <div className="mt-4">
+                  <div className="m-4 lg:m-8 flex flex-col justify-center items-center gap-2">
+                    <CheckCircleIcon className='size-16 text-slate-200' />
+                    <p className='text-xl text-center'>{t('HomePage.voteSubmited')}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-4">
 
-              <p className='text-base lg:text-2xl mb-4'>Q: {currWeeklyPoll.description[locale]}</p>
-              <div className="grid gap-4 grid-cols-1 lg:grid-cols-3">
-                {currWeeklyPoll.choices.map((choice => (
-                  <button 
-                    type='button' key={choice.key}
-                    className={clsx(getSelectedChoice(currWeeklyPoll.id) == choice.key ? "bg-white text-[#4A4A4A] select-none pointer-events-none" :
-                      "hover:ring-2 hover:ring-inset hover:ring-brandorange hover:border-brandorange"
-                    , "p-4 rounded-full border border-white flex items-center gap-2")}
-                    onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
-                  >
-                    <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
-                    {getSelectedChoice(currWeeklyPoll.id) == choice.key &&
-                      <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
-                    }
-                  </button>
-                )))}
-              </div>
-            </div>
+                  <p className='text-base lg:text-2xl mb-4'>Q: {currWeeklyPoll.description[locale]}</p>
+                  <div className="grid gap-4 grid-cols-1 lg:grid-cols-3">
+                    {currWeeklyPoll.choices.map((choice => (
+                      <button 
+                        type='button' key={choice.key}
+                        className={clsx(getSelectedChoice(currWeeklyPoll.id) == choice.key ? "bg-white text-[#1d1c1c] select-none pointer-events-none" :
+                          "hover:ring-2 hover:ring-inset hover:ring-brandorange hover:border-brandorange"
+                        , "p-4 rounded-full border border-white flex items-center gap-2")}
+                        onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
+                      >
+                        <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
+                        {getSelectedChoice(currWeeklyPoll.id) == choice.key &&
+                          <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
+                        }
+                      </button>
+                    )))}
+                  </div>
+                </div>
+              )
+            )
           ) : (
             <div className="mt-4 flex justify-center">
               <p>...</p>

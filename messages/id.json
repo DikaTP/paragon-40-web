@@ -13,7 +13,8 @@
     "week": "Minggu",
     "weekShort": "M",
     "vote": "Suara",
-    "votingInProgress": "Pengambilan suara masih berlangsung!"
+    "votingInProgress": "Pengambilan suara masih berlangsung!",
+    "voteSubmited": "Terima kasih telah memilih!"
   },
   "ProfilePage": {
     "title": "Profil",

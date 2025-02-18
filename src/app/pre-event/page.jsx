@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useContext, useEffect, useState, useCallback } from 'react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { CheckCircleIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { UserContext } from '../providers/AuthProvider'
 import { getOpeningSpeechPoll, getOpeningSpeechVote, submitVote } from '@/utils/firebase/firestoreHelper'
 import clsx from 'clsx'
@@ -21,6 +21,8 @@ export default function PreEventPage() {
   const authUser = useContext(UserContext)
   const [openingSpeechPoll, setOpeningSpeechPoll] = useState(null)
   const [openingSpeechVote, setOpeningSpeechVote] = useState(null)
+  const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
+  const [isUserVoted, setIsUserVoted] = useState(false)
 
   // fetch data
   useEffect(() => {
@@ -44,20 +46,22 @@ export default function PreEventPage() {
       if(poll) {
         getOpeningSpeechVote(authUser, poll.id).then(vote => {
           setOpeningSpeechVote(vote)
+          setIsUserVotesFetched(true)
         })
       }
     })
-  }, [authUser, setOpeningSpeechPoll, setOpeningSpeechVote])
+  }, [authUser, setOpeningSpeechPoll, setOpeningSpeechVote, setIsUserVotesFetched])
   
   const selectChoice = useCallback((pollId, choiceId) => {
       submitVote(authUser, pollId, choiceId)
       .then(() => {
-        getOpeningSpeechVote(authUser, pollId).then((vote) => {
-          setOpeningSpeechVote(vote)
-        })
+        setIsUserVoted(true)
+        // getOpeningSpeechVote(authUser, pollId).then((vote) => {
+        //   setOpeningSpeechVote(vote)
+        // })
       })
 
-    }, [authUser])
+    }, [authUser, setIsUserVoted])
 
   return (
     <div className="flex-grow pb-8 bg-kv-2">
@@ -75,25 +79,36 @@ export default function PreEventPage() {
         <div className="w-full p-6 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4 z-10">
           <p className="text-xl lg:text-4xl font-bold mb-2">{t('PreEventPage.openingSpeech')}</p>
           {openingSpeechPoll ? (
-            <>
-              <p className="text-base lg:text-2xl mb-2">Q: {openingSpeechPoll?.description[locale]}</p>
-              <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
-              {openingSpeechPoll.choices.map((choice => (
-                  <button 
-                      type='button' key={choice.key}
-                      className={clsx(openingSpeechVote?.choiceId == choice.key ? "bg-white text-[#4A4A4A] select-none pointer-events-none" :
-                        "hover:ring-2 hover:ring-inset hover:ring-brandorange hover:border-brandorange"
-                      , "p-4 rounded-full border border-white flex items-center gap-2")}
-                      onClick={() => {selectChoice(openingSpeechPoll.id, choice.key)}}
-                    >
-                      <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
-                      {openingSpeechVote?.choiceId == choice.key &&
-                        <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
-                      }
-                  </button>
-                )))}
-              </div>
-            </>
+            isUserVotesFetched && (
+              (isUserVoted || openingSpeechVote?.choiceId) ? (
+                <div className="mt-4">
+                  <div className="m-4 lg:m-8 flex flex-col justify-center items-center gap-2">
+                    <CheckCircleIcon className='size-16 text-slate-200' />
+                    <p className='text-xl text-center'>{t('HomePage.voteSubmited')}</p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <p className="text-base lg:text-2xl mb-2">Q: {openingSpeechPoll?.description[locale]}</p>
+                  <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
+                  {openingSpeechPoll.choices.map((choice => (
+                      <button 
+                          type='button' key={choice.key}
+                          className={clsx(openingSpeechVote?.choiceId == choice.key ? "bg-white text-[#4A4A4A] select-none pointer-events-none" :
+                            "hover:ring-2 hover:ring-inset hover:ring-brandorange hover:border-brandorange"
+                          , "p-4 rounded-full border border-white flex items-center gap-2")}
+                          onClick={() => {selectChoice(openingSpeechPoll.id, choice.key)}}
+                        >
+                          <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
+                          {openingSpeechVote?.choiceId == choice.key &&
+                            <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
+                          }
+                      </button>
+                    )))}
+                  </div>
+                </>
+              )
+            )
           ) : (
             <div className="mt-4 flex justify-center">
               <p>...</p>
