@@ -110,8 +110,11 @@ export default function PreEventPage() {
               )
             )
           ) : (
-            <div className="mt-4 flex justify-center">
-              <p>...</p>
+            <div className="mt-4">
+              <div className="m-4 lg:m-8 flex flex-col justify-center items-center gap-2">
+                <CheckCircleIcon className='size-16 text-slate-200' />
+                <p className='text-xl text-center'>{t('HomePage.voteSubmited')}</p>
+              </div>
             </div>
           )}
         </div>

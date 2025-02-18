@@ -214,6 +214,14 @@ export default function HomePage() {
             </div>
           )}
         </div>
+
+        <div className="w-full rounded-3xl text-white my-2 lg:my-4">
+          <video loop controls className='rounded-3xl w-full h-full max-h-screen bg-black'>
+            <source src="https://storage.googleapis.com/paragon-p40-cdn/movie/1080%20landscape.mp4" type="video/mp4"/>
+             Your browser does not support the video.
+          </video>
+        </div>
+
       </div>
     </div>
   );

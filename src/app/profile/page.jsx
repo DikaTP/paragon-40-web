@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { UserContext } from '../providers/AuthProvider';
 import { useContext } from 'react';
+import { ucwords } from '@/utils/helper';
 
 
 export default function ProfilePage() {
@@ -28,8 +29,8 @@ export default function ProfilePage() {
             <div className="flex flex-col gap-2 text-start col-span-full lg:col-span-1 justify-center">
               <p className="text-base lg:text-2xl font-bold">{authUser?.name}</p>
               <p className="text-base lg:text-2xl">{authUser?.email}</p>
-              <p className="text-base lg:text-2xl">{authUser?.jobPosition}</p>
-              <p className="text-base lg:text-2xl">{t('ProfilePage.regionOffice')}: {authUser?.region}</p>
+              {/* <p className="text-base lg:text-2xl">{authUser?.jobPosition}</p> */}
+              <p className="text-base lg:text-2xl">{t('ProfilePage.regionOffice')}: {authUser?.region ? ucwords(authUser?.region) : ''}</p>
             </div>
           </div>
         </div>

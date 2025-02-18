@@ -8,6 +8,7 @@ import LocaleSwitch from '@/components/LocaleSwitch';
 import clsx from "clsx";
 import { signOut, useSession } from "next-auth/react";
 import { UserContext } from "@/app/providers/AuthProvider";
+import { ucwords } from "@/utils/helper";
 
 
 
@@ -42,7 +43,7 @@ export default function Navigation() {
             <button type="button" onClick={toggleDropdownProfileOpen} className="text-left flex items-center gap-2">
               <div className="">
                 <p className="font-bold max-w-36 text-ellipsis text-nowrap overflow-hidden">{authUser?.name || ''}</p>
-                <p className="text-sm">Region: {authUser?.region || ''}</p>
+                <p className="text-sm">Region: {authUser?.region ? ucwords(authUser?.region) : ''}</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -80,7 +81,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <LocaleSwitch />
           </div>
-          <h4 className="text-lg text-white my-8">Menu</h4>
+          <h4 className="text-lg my-8">Menu</h4>
           <div className="flex flex-col gap-6">
             <NavLink onClick={toggleMobileMenuOpen} href="/home">{t('home')}</NavLink>
             <NavLink onClick={toggleMobileMenuOpen} href="/about">{t('about')}</NavLink>
@@ -89,10 +90,10 @@ export default function Navigation() {
           </div>
         </div>
         <div className="flex flex-grow flex-col p-8 justify-end gap-4">
-          <h4 className="text-lg text-white">Profile</h4>
+          <h4 className="text-lg ">Profile</h4>
           <div className="">
-            <p className="text-white">{authUser?.name || ''}</p>
-            <p className="text-white text-sm">Region: {authUser?.region || ''}</p>
+            <p className="">{authUser?.name || ''}</p>
+            <p className="text-sm">Region: {authUser?.region ? ucwords(authUser?.region) : ''}</p>
           </div>
           <NavLink onClick={toggleMobileMenuOpen} href="/profile">{t('profile')}</NavLink>
 
