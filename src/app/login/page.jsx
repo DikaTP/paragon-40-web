@@ -10,15 +10,7 @@ export default function LoginPage() {
   const loginTtl = () => {
     return (
       <>
-        {locale === 'en' ? (
-          <>
-            <span className="text-primary">{t('titleHighlight')}</span> {t('title')}
-          </>
-        ) : (
-          <>
-            {t('title')} <span className="text-primary">{t('titleHighlight')}</span>
-          </>
-        )}
+        <span className="text-primary">{t('titleHighlight')}</span> {t('title')}
       </>
     );
   };
