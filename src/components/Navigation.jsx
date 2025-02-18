@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useContext, useState } from "react";
+import { Suspense, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useTranslations } from 'next-intl';
 import NavLink from '@/components/NavLink';
 import Image from 'next/image';
@@ -25,6 +25,29 @@ export default function Navigation() {
   function toggleDropdownProfileOpen() {
     setIsDropdownProfileOpen(!isDropdownProfileOpen);
   };
+
+  const mobileMenuRef = useRef()
+  const mobileHeaderRef = useRef()
+  const [showMobileMenuBackground, setShowMobileMenuBackground] = useState(false)
+
+  // The scroll listener
+  const handleScroll = useCallback(() => {
+    const currScrollPos = mobileMenuRef.current.scrollTop
+    const currHeaderHeight = mobileHeaderRef.current.clientHeight
+    if(currScrollPos > (currHeaderHeight / 2)) {
+      setShowMobileMenuBackground(true)
+    } else {
+      setShowMobileMenuBackground(false)
+    }
+  }, [])
+
+  // Attach the scroll listener to the div
+  useEffect(() => {
+    const mobileMenu = mobileMenuRef.current
+    if(mobileMenu) {
+      mobileMenu.addEventListener("scroll", handleScroll)
+    }
+  }, [handleScroll])
 
   const handleSignOut = () => {
     localStorage.removeItem("LOGIN_POPUP")
@@ -73,8 +96,8 @@ export default function Navigation() {
           </button>
         </div>
       </div>
-      <div className={clsx("fixed top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-50 ", !isMobileMenuOpen && 'hidden' )}>
-        <div className="p-4 flex justify-between">
+      <div ref={mobileMenuRef} className={clsx("fixed top-0 left-0 w-screen h-screen bg-indigo-200 flex flex-col z-50 overflow-y-scroll", !isMobileMenuOpen && 'hidden' )}>
+        <div ref={mobileHeaderRef} className={clsx("p-4 flex justify-between sticky top-0 transition delay-150 duration-300 ease-in-out", showMobileMenuBackground ? "bg-primary" : "bg-transparent")}>
           <Image src="/p40-logo.png" alt="logo" width="60" height="39"/>
           <button type='button' className='inline-flex items-center text-white p-2 justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500' onClick={toggleMobileMenuOpen}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
