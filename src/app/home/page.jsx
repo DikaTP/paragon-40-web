@@ -7,7 +7,7 @@ import { UserContext } from '../providers/AuthProvider';
 import { getUserVotes, getWeeklyPoll, submitVote } from '@/utils/firebase/firestoreHelper';
 import clsx from 'clsx';
 import _ from 'lodash';
-import { CheckCircleIcon, CheckIcon, Square3Stack3DIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, CheckIcon, Square3Stack3DIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function HomePage() {
   const t = useTranslations();
@@ -20,6 +20,22 @@ export default function HomePage() {
   const [userVotes, setUserVotes] = useState([])
   const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
   const [isUserVoted, setIsUserVoted] = useState(false)
+
+  const [isClient, setIsClient] = useState(false);
+  const [showLoginPopup, setLoginPopup] = useState(() => {
+    try {
+      const loginPopupFlag = typeof window !== "undefined" ? localStorage.getItem("LOGIN_POPUP") : 1;
+      if(loginPopupFlag != 1) {
+        localStorage.setItem("LOGIN_POPUP", 1)
+        return 1
+      }
+
+      return 0
+    } catch (error) {
+      console.error("LOGIN_POPUP error:", error)
+      return 0
+    }
+  });
 
   // fetch data
   useEffect(() => {
@@ -46,6 +62,10 @@ export default function HomePage() {
       // console.log('votes', v)
     })
   }, [authUser, setUserVotes, setIsUserVotesFetched])
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const pollResult = useMemo(() => {
     const poll = weeklyPolls.find(o => o.week == pollResultViewingKey);
@@ -84,6 +104,10 @@ export default function HomePage() {
     });
 
     return selectedChoice?.choiceId
+  }
+
+  const closeLoginPopup = () => {
+    setLoginPopup(0)
   }
 
   return (
@@ -231,6 +255,16 @@ export default function HomePage() {
         </div>
 
       </div>
+      {isClient ? showLoginPopup == 1 && (
+          <div className="w-screen h-screen fixed top-0 left-0 m-0 p-0 inset-0 flex justify-center items-center bg-gray-700 bg-opacity-25">
+            <div className="relative rounded-xl shadow-xl flex flex-col items-center w-80">
+                <img src={`https://storage.googleapis.com/paragon-p40-cdn/asset/login_popup_${locale}.webp`} alt="" />
+                <div className="absolute right-0 top-0 p-2 cursor-pointer" onClick={() => closeLoginPopup()}>
+                  <XMarkIcon className="size-6" />
+                </div>
+            </div>
+          </div>
+        ) : ""}
     </div>
   );
 }

@@ -26,6 +26,11 @@ export default function Navigation() {
     setIsDropdownProfileOpen(!isDropdownProfileOpen);
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem("LOGIN_POPUP")
+    signOut()
+  }
+
   return (
     <div className="">
       <div className="mx-auto flex max-w-screen-2xl items-end justify-between py-4 px-4 lg:px-16 lg:mb-8">
@@ -52,7 +57,7 @@ export default function Navigation() {
             <div className={clsx("absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-transparent-nav ring-1 shadow-lg ring-black/5 focus:outline-hidden", !isDropdownProfileOpen && 'hidden')} role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
               <div className="flex flex-col gap-4 p-4" role="none">
                 <NavLink onClick={toggleDropdownProfileOpen} href="/profile">{t('profile')}</NavLink>
-                <button onClick={() => signOut()} className="border rounded-full px-6 py-2 bg-red-500 text-center text-white">Log Out</button>
+                <button onClick={() => handleSignOut()} className="border rounded-full px-6 py-2 bg-red-500 text-center text-white">Log Out</button>
               </div>
             </div>
           </div>
@@ -97,7 +102,7 @@ export default function Navigation() {
           </div>
           <NavLink onClick={toggleMobileMenuOpen} href="/profile">{t('profile')}</NavLink>
 
-          <button onClick={() => signOut()} className="border rounded-full px-6 py-2 bg-red-500 text-center text-white">Log Out</button>
+          <button onClick={() => handleSignOut()} className="border rounded-full px-6 py-2 bg-red-500 text-center text-white">Log Out</button>
         </div>
       </div>
     </div>
