@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useContext, useEffect, useState, useCallback } from 'react'
+import { useContext, useEffect, useState, useCallback, useMemo } from 'react'
 import { CheckCircleIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { UserContext } from '../providers/AuthProvider'
 import { getOpeningSpeechPoll, getOpeningSpeechVote, submitVote } from '@/utils/firebase/firestoreHelper'
@@ -35,7 +35,7 @@ export default function PreEventPage() {
     getOpeningSpeechPoll(authUser)
     .then(poll => {
       const t = Math.floor(Date.now() / 1000)
-      if (poll.startTime.seconds <= t && poll.endTime.seconds >= t) {
+      if (poll?.startTime.seconds <= t && poll?.endTime.seconds >= t) {
         setOpeningSpeechPoll(poll)
         return poll
       } else {
@@ -62,6 +62,64 @@ export default function PreEventPage() {
       })
 
     }, [authUser, setIsUserVoted])
+
+  const timelineData = useMemo(() => [
+    {
+      title1: 'Pre-event:',
+      title2: 'Festival Paragonian Talks',
+      date: 'February 14th, 2025',
+      time: '(07.30 - 10.00 WIB)',
+      location: 'HO (P9), Plant (J6), All DC',
+    },
+    {
+      title1: 'Pre-event:',
+      title2: 'Peresmian Paragon HQ',
+      date: 'February 17th, 2025',
+      time: '(07.30 - 09.30 WIB)',
+      location: 'Ciledug Office',
+    },
+    {
+      title1: 'Pre-event:',
+      title2: 'Paragonian Talks (Malaysia)',
+      date: 'February 21th, 2025',
+      time: '(08.30 - 10.30 MYT)',
+      location: 'Malaysia',
+    },
+    {
+      title1: 'Main Event',
+      title2: null,
+      date: 'February 28th, 2025',
+      time: '(07.30-10.00 WIB)',
+      location: 'Offline, in each work area',
+    },
+  ], [])
+
+  const fptData = useMemo(() => [
+    {
+      title: 'Head Office',
+      date: 'February 14th, 2025',
+      time: '(07.30 - 10.00 WIB)',
+      icon: true,
+    },
+    {
+      title: 'DC',
+      date: 'February 14th, 2025',
+      time: '(07.30 - 10.00 WIB)',
+      icon: true,
+    },
+    {
+      title: 'Plant',
+      date: 'February 14th, 2025',
+      time: '(14.30 - 17.30 WIB)',
+      icon: true,
+    },
+    {
+      title: 'Malaysia',
+      date: 'February 21th, 2025',
+      time: '(08.30 - 10.30 MYT)',
+      icon: true,
+    },
+  ], [])
 
   return (
     <div className="flex-grow pb-8 bg-kv-2">
@@ -119,61 +177,33 @@ export default function PreEventPage() {
           )}
         </div>
 
-        {/* Timeline */}
         <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.timeline')}</a>
-          <div className="">
-            <div className="relative pl-8 lg:pl-24 py-6 group">
-              <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                <div className="px-7 bg-blue-700 rounded-full w-65 ">
-                  <p className="text-base">Pre-event:</p>
-                  <p className="text-base">Festival Paragonian Talks</p>
+          <div className="mt-6 pt-4 space-y-8 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-2 before:bg-white">
+
+            {timelineData.map((data,idx) => (
+              <div key={idx} className="relative flex justify-between md:justify-normal md:odd:flex-row-reverse group">
+                {/* <!-- Icon --> */}
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                </div>
+                {/* <!-- Card --> */}
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] flex flex-col items-start md:group-even:items-end">
+                  <div className="">
+                    <div className="px-7 py-2 bg-blue-700 rounded-full">
+                      <p className="text-base">{data.title1}</p>
+                      {data.title2 && (
+                        <p className="text-base">{data.title2}</p>
+                      )}
+                    </div>
+                    <div className="pl-7 mt-2">
+                      <p>{data.date}</p>
+                      <p>{data.time}</p>
+                      <p className='font-bold'>{data.location}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="pl-3">
-                <p>February 14th, 2025</p>
-                <p>(07.30-10.00 WIB)</p>
-                <p className='font-bold'>HO (P9), Plant (J6), All DC</p>
-              </div>
-            </div>
-            <div className="relative pl-8 lg:pl-24 py-6 group">
-              <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                <div className="px-7 bg-blue-700 rounded-full w-65 ">
-                  <p className="text-base">Pre-event:</p>
-                  <p className="text-base">Peresmian Paragon HQ</p>
-                </div>
-              </div>
-              <div className="pl-3">
-                <p>February 17th, 2025</p>
-                <p>(07.30-09.30 WIB)</p>
-                <p className='font-bold'>Ciledug Office</p>
-              </div>
-            </div>
-            <div className="relative pl-8 lg:pl-24 py-6 group">
-              <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                <div className="px-7 bg-blue-700 rounded-full w-65 ">
-                  <p className="text-base">Pre-event: Festival</p>
-                  <p className="text-base">Paragonian Talks (Malaysia)</p>
-                </div>
-              </div>
-              <div className="pl-3">
-                <p>February 21st, 2025</p>
-                <p>(08.30-10.30 MYT)</p>
-                <p className='font-bold'>Malaysia</p>
-              </div>
-            </div>
-            <div className="relative pl-8 lg:pl-24 py-6 group">
-              <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                <div className="px-7 bg-blue-700 rounded-full w-65 ">
-                  <p className="text-base">Main Event</p>
-                </div>
-              </div>
-              <div className="pl-3">
-                <p>February 28th, 2025</p>
-                <p>(07.30-10.00 WIB)</p>
-                <p className='font-bold'>Offline, in each work area</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -183,51 +213,28 @@ export default function PreEventPage() {
           {/* FESTIVAL PARAGONIAN TALKS */}
           <div className="bg-kv-gradient rounded-3xl col-span-full lg:col-span-2 text-white p-6 lg:-order-1">
             <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.festivalParagonTalks')}</a>
-            <div className="-my-6 mt-5">
-              <div className="relative pl-8 lg:pl-24 py-6 group">
-                <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                  <div className="px-7 bg-[#8855FF] rounded-full w-65 ">
-                    <p className="text-base">Head Office</p>
+            <div className="mt-6 pt-4 space-y-8 relative before:absolute before:inset-0 before:ml-4 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-2 before:bg-white">
+
+              {fptData.map((data,idx) => (
+                <div key={idx} className="relative flex justify-between md:justify-normal md:odd:flex-row-reverse group">
+                  {/* <!-- Icon --> */}
+                  
+                  <div className={clsx("flex items-center justify-center w-10 h-10 rounded-full shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2", data.icon && "border border-white bg-slate-300 text-slate-500 shadow")}>
+                  </div>
+                  {/* <!-- Card --> */}
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] flex flex-col items-start md:group-even:items-end">
+                    <div className="">
+                      <div className="px-7 py-2 bg-[#8855FF] rounded-full">
+                        <p className="text-base">{data.title}</p>
+                      </div>
+                      <div className="pl-7 mt-2">
+                        <p>{data.date}</p>
+                        <p>{data.time}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="pl-3">
-                  <p>February 14th, 2025</p>
-                  <p>(07.30-10.00 WIB)</p>
-                </div>
-              </div>
-              <div className="relative pl-8 lg:pl-24 py-6 group">
-                <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                  <div className="px-7 bg-[#8855FF] rounded-full w-65 ">
-                    <p className="text-base">DC</p>
-                  </div>
-                </div>
-                <div className="pl-3">
-                  <p>February 14th, 2025</p>
-                  <p>(07.30-10.00 WIB)</p>
-                </div>
-              </div>
-              <div className="relative pl-8 lg:pl-24 py-6 group">
-                <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                  <div className="px-7 bg-[#8855FF] rounded-full w-65 ">
-                    <p className="text-base">Plant</p>
-                  </div>
-                </div>
-                <div className="pl-3">
-                  <p>February 14th, 2025</p>
-                  <p>(14.30-17.30 WIB)</p>
-                </div>
-              </div>
-              <div className="relative pl-8 lg:pl-24 py-6 group">
-                <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-white sm:before:ml-16 before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-gray-500 after:border-4 after:box-content after:border-gray-500 after:rounded-full sm:after:ml-16 after:-translate-x-1/2 after:translate-y-1.5">
-                  <div className="px-7 bg-[#8855FF] rounded-full w-65 ">
-                    <p className="text-base">Malaysia</p>
-                  </div>
-                </div>
-                <div className="pl-3">
-                  <p>February 21st, 2025</p>
-                  <p>(08.30-10.30 MYT)</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
