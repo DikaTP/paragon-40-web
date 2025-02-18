@@ -153,7 +153,7 @@ export const getWeeklyPoll = async () => {
 
 export const getOpeningSpeechPoll = async (user) => {
   try {
-    const docId = 'openingspeech-p40-' + user.region
+    const docId = 'openingspeech-p40-' + user.placement
     const poll = await getDocument('poll', docId)
     return poll
   } catch (error) {
