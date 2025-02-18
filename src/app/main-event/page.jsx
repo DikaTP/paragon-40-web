@@ -68,8 +68,6 @@ export default function MainEventPage() {
             <div className="col-span-full lg:col-span-1 flex flex-col justify-between lg:p-8">
               <div className="mb-8">
                 <div className="flex flex-row gap-5 mb-8">
-                  <Image src={"/xxi.png"} alt="XXI" width={95} height={95} />
-                  <Image src={"/cgv.png"} alt="CGV" width={100} height={100} />
                 </div>
                 <span className="font-semibold text-2xl text-white">
                   Will be located on your nearest Work Area
