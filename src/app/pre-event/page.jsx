@@ -259,7 +259,7 @@ export default function PreEventPage() {
 
         {/* ABOUT PARAGONIAN TALKS */}
         <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
-          <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.aboutFestival')} Paragonian Talks</a>
+          <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.about')} Festival Paragonian Talks</a>
           <div className="mt-5">
             <p className="text-base mb-3">{t('PreEventPage.festivalDescription1')}</p>
             <p className="text-base mb-3">{t('PreEventPage.festivalDescription2')}</p>
@@ -267,6 +267,14 @@ export default function PreEventPage() {
             <p className="text-base">{t('PreEventPage.festivalDescription4')}</p>
           </div>
         </div>
+
+        <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
+          <a href="" className="text-xl lg:text-4xl font-bold">{t('PreEventPage.about')} Peresmian HQ</a>
+          <div className="mt-5">
+            <p className="text-base mb-3 whitespace-pre-line">{t('PreEventPage.HQInauguration')}</p>
+          </div>
+        </div>
+
       </div>
     </div>
   );

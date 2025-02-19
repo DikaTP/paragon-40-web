@@ -34,11 +34,12 @@
     "votingResult": "Voting Result",
     "timeline": "Timeline",
     "festivalParagonTalks": "Festival Paragonian Talks",
-    "aboutFestival": "About Festival",
+    "about": "About",
     "festivalDescription1": "The Paragonian Talks Festival is a Pre-Event that is one of a series of journeys towards P40. With the format of Paragonian Talks (talkshow) and Culinary Festival, it is hoped that this agenda will further increase the spirit and excitement towards P40, and emphasize “Paragon's Choice is Paragonian's Choice” and Paragon 40 this year is a moment with all paragonians.",
     "festivalDescription2": "The main event of this Pre-Event is Paragonian Talks: Talkshow Across Generations. This was an interactive discussion session that involved 2 Paragonians from different generations meeting to share experiences, perspectives, and hopes.",
     "festivalDescription3": "Objective: To be a platform for all to learn from each other and reverse mentoring, and appreciate each other's contribution in Paragon's 40th year journey.",
-    "festivalDescription4": "From the seniors we can learn about grit, the struggles that made us what we are today, the spirit that is maintained and the mutual cooperation that is applied. From the younger ones we can learn about relevance to trends, how generations evolve, and how technology transforms today."
+    "festivalDescription4": "From the seniors we can learn about grit, the struggles that made us what we are today, the spirit that is maintained and the mutual cooperation that is applied. From the younger ones we can learn about relevance to trends, how generations evolve, and how technology transforms today.",
+    "HQInauguration": "Peresmian Head Quarter with the title \"Rumah yang Diusahakan Bersama\" is a moment where finally Paragonians celebrate the first day of occupying a new home that has been worked on together since 2018. A bigger, wider, more sophisticated house, but there are still long tables to chat together about big dreams of usefulness. It's not just about having a large and nice place, but this is a symbol of how the realization of a dream becomes a reality. \n\n A house that will be a place to give birth to new innovations that are bigger and bolder. A house that will be the best place to prepare us all towards the house of eternity. A house that will always remind us of \"Kita sekarang karena kita kemarin\""
   },
   "MainEventPage": {
     "title": "MAIN EVENT",
