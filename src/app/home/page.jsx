@@ -172,8 +172,17 @@ export default function HomePage() {
               )
             )
           ) : (
-            <div className="mt-4 flex justify-center">
-              <p>...</p>
+            <div className="mt-4">
+              <div className="lg:mx-8 px-8 py-12 bg-purple-600 rounded-3xl relative">
+                <p className='text-4xl lg:text-6xl font-bold'><span className='text-stroke'>WHAT</span><br />NEXT?</p>
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2">
+                  <Image src="/bg-kv-1.png" alt="home-right-img"
+                    width={4096} height={2304}
+                    sizes="100vw"
+                    className='w-[200px] h-[150px] md:w-full md:h-full'
+                    style={{objectFit: 'cover', objectPosition: 'left' }} />
+                </div>
+              </div>
             </div>
           )}
         </div>
