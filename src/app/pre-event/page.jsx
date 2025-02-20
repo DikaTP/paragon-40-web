@@ -90,7 +90,7 @@ export default function PreEventPage() {
       title2: null,
       date: locale == 'en' ? 'February 28th, 2025' : '28 Februari 2025',
       time: '(07.30-10.00 WIB)',
-      location: 'Offline, in each work area',
+      location: t('MainEventPage.offlineArea'),
     },
   ], [locale])
 
@@ -116,11 +116,10 @@ export default function PreEventPage() {
     {
       title: 'Malaysia',
       date: locale == 'en' ? 'February 21th, 2025' : '21 Februari 2025',
-      date: 'February 21th, 2025',
       time: '(08.30 - 10.30 MYT)',
       icon: true,
     },
-  ], [])
+  ], [locale])
 
   return (
     <div className="flex-grow pb-8 bg-kv-2">
