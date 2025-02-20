@@ -152,16 +152,16 @@ export default function HomePage() {
                 <div className="mt-4">
 
                   <p className='text-base lg:text-2xl mb-4'>Q: {currWeeklyPoll.description[locale]}</p>
-                  <div className="grid gap-4 grid-cols-1 lg:grid-cols-3">
+                  <div className="grid gap-4 grid-cols-1">
                     {currWeeklyPoll.choices.map((choice => (
                       <button 
                         type='button' key={choice.key}
                         className={clsx(getSelectedChoice(currWeeklyPoll.id) == choice.key ? "bg-white text-[#1d1c1c] select-none pointer-events-none" :
                           "hover:ring-2 hover:ring-inset hover:ring-brandorange hover:border-brandorange"
-                        , "p-4 rounded-full border border-white flex items-center gap-2")}
+                        , "p-4 rounded-3xl border border-white flex items-center gap-2")}
                         onClick={() => doSubmitVote(currWeeklyPoll.id, choice.key)}
                       >
-                        <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
+                        <div className="flex-grow text-left text-sm lg:text-base" dangerouslySetInnerHTML={{__html: choice.text[locale]}}></div>
                         {getSelectedChoice(currWeeklyPoll.id) == choice.key &&
                           <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
                         }
@@ -214,14 +214,14 @@ export default function HomePage() {
             <div className="mt-4">
 
               <p className='mb-4 text-base lg:text-2xl'>Q: {pollResult.description[locale]}</p>
-              <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 items-center select-none">
+              <div className="grid gap-4 grid-cols-1 items-center select-none">
                 {pollResult.choices.map((choice => (
                   <div 
                     key={choice.key}
                     className={pollResult.result.highestVoteKey == choice.key ? "p-3 bg-yellow-300 rounded-3xl" : ""}
                   >
-                    <div className={clsx("p-4 rounded-full border border-white flex justify-between items-center", pollResult.result.highestVoteKey == choice.key ? "bg-white text-[#4A4A4A]" : "")}>
-                      <div className="flex-grow text-left text-sm lg:text-base">{choice.text[locale]}</div>
+                    <div className={clsx("p-4 rounded-3xl border border-white flex justify-between items-center", pollResult.result.highestVoteKey == choice.key ? "bg-white text-[#4A4A4A]" : "")}>
+                      <div className="flex-grow text-left text-sm lg:text-base" dangerouslySetInnerHTML={{__html: choice.text[locale]}}></div>
                       {getSelectedChoice(pollResult.id) == choice.key &&
                         <div className="text-purple-700 bg-purple-100 rounded-full h-6 w-6 flex justify-center items-center flex-shrink-0"><CheckIcon className='size-4'/></div>
                       }
