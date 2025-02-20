@@ -44,7 +44,10 @@
   "MainEventPage": {
     "title": "MAIN EVENT",
     "seeYou": "See you on February 28th, 2025!",
-    "offlineArea": "Offline in each Work Area"
+    "offlineArea": "Offline in each Work Area",
+    "locationDescription": "Will be located on your nearest Work Area",
+    "mapButtonText": "Open Maps",
+    "watchButtonText": "Watch Livestream"
   },
   "LoginPage": {
     "titleHighlight": "40 Years",

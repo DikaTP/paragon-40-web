@@ -70,17 +70,17 @@ export default function MainEventPage() {
                 <div className="flex flex-row gap-5 mb-8">
                 </div>
                 <span className="font-semibold text-2xl text-white">
-                  Will be located on your nearest Work Area
+                  {t('MainEventPage.locationDescription')}
                 </span>
               </div>
               <div className="flex flex-row gap-3 justify-around lg:justify-start items-center">
                 <button className="flex flex-row gap-1 justify-center items-center rounded-full py-3 px-4 bg-purple-600 text-white text-sm">
                   <MapPinIcon className="size-5" />
-                  Open Maps
+                  {t('MainEventPage.mapButtonText')}
                 </button>
                 <button className="flex flex-row gap-1 justify-center items-center rounded-full py-3 px-4 bg-orange-600 text-white text-sm">
                   <PlayCircleIcon className="size-5" />
-                  Watch Livestream
+                  {t('MainEventPage.watchButtonText')}
                 </button>
               </div>
             </div>

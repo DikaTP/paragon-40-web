@@ -43,8 +43,11 @@
   },
   "MainEventPage": {
     "title": "ACARA UTAMA",
-    "seeYou": "Sampai jumpa di 28 February 2025!",
-    "offlineArea": "Offline di setiap Area Kerja"
+    "seeYou": "Sampai jumpa di 28 Februari 2025!",
+    "offlineArea": "Offline di setiap Area Kerja",
+    "locationDescription": "Akan berlokasi di venue terdekat dengan Area Kerja anda",
+    "mapButtonText": "Buka Peta",
+    "watchButtonText": "Tonton Siaran Langsung"
   },
   "LoginPage": {
     "titleHighlight": "40 Years",

@@ -67,54 +67,55 @@ export default function PreEventPage() {
     {
       title1: 'Pre-event:',
       title2: 'Festival Paragonian Talks',
-      date: 'February 14th, 2025',
+      date: locale == 'en' ? 'February 14th, 2025' : '14 Februari 2025',
       time: '(07.30 - 10.00 WIB)',
       location: 'HO (P9), Plant (J6), All DC',
     },
     {
       title1: 'Pre-event:',
       title2: 'Peresmian Paragon HQ',
-      date: 'February 17th, 2025',
+      date: locale == 'en' ? 'February 17th, 2025' : '17 Februari 2025',
       time: '(07.30 - 09.30 WIB)',
       location: 'Ciledug Office',
     },
     {
       title1: 'Pre-event:',
       title2: 'Paragonian Talks (Malaysia)',
-      date: 'February 21th, 2025',
+      date: locale == 'en' ? 'February 21th, 2025' : '21 Februari 2025',
       time: '(08.30 - 10.30 MYT)',
       location: 'Malaysia',
     },
     {
       title1: 'Main Event',
       title2: null,
-      date: 'February 28th, 2025',
+      date: locale == 'en' ? 'February 28th, 2025' : '28 Februari 2025',
       time: '(07.30-10.00 WIB)',
       location: 'Offline, in each work area',
     },
-  ], [])
+  ], [locale])
 
   const fptData = useMemo(() => [
     {
       title: 'Head Office',
-      date: 'February 14th, 2025',
+      date: locale == 'en' ? 'February 14th, 2025' : '14 Februari 2025',
       time: '(07.30 - 10.00 WIB)',
       icon: true,
     },
     {
       title: 'DC',
-      date: 'February 14th, 2025',
+      date: locale == 'en' ? 'February 14th, 2025' : '14 Februari 2025',
       time: '(07.30 - 10.00 WIB)',
       icon: true,
     },
     {
       title: 'Plant',
-      date: 'February 14th, 2025',
+      date: locale == 'en' ? 'February 14th, 2025' : '14 Februari 2025',
       time: '(14.30 - 17.30 WIB)',
       icon: true,
     },
     {
       title: 'Malaysia',
+      date: locale == 'en' ? 'February 21th, 2025' : '21 Februari 2025',
       date: 'February 21th, 2025',
       time: '(08.30 - 10.30 MYT)',
       icon: true,
