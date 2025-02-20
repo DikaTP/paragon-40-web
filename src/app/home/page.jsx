@@ -8,18 +8,26 @@ import { getUserVotes, getWeeklyPoll, submitVote } from '@/utils/firebase/firest
 import clsx from 'clsx';
 import _ from 'lodash';
 import { CheckCircleIcon, CheckIcon, Square3Stack3DIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ParagonContext } from '../providers/ParagonProvider';
 
 export default function HomePage() {
   const t = useTranslations();
   const format = useFormatter();
   const locale = useLocale();
   const authUser = useContext(UserContext)
-  const [weeklyPolls, setWeeklyPolls] = useState([])
-  const [currWeeklyPoll, setCurrWeeklyPoll] = useState(null)
+  // const [weeklyPolls, setWeeklyPolls] = useState([])
+  // const [currWeeklyPoll, setCurrWeeklyPoll] = useState(null)
   const [pollResultViewingKey, setPollResultViewingKey] = useState(1)
-  const [userVotes, setUserVotes] = useState([])
-  const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
+  // const [userVotes, setUserVotes] = useState([])
+  // const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
   const [isUserVoted, setIsUserVoted] = useState(false)
+  const {
+    weeklyPolls,
+    currWeeklyPoll,
+    userVotes,
+    isUserVotesFetched,
+    fetchUserVotes
+  } = useContext(ParagonContext)
 
   const [isClient, setIsClient] = useState(false);
   const [showLoginPopup, setLoginPopup] = useState(() => {
@@ -38,30 +46,30 @@ export default function HomePage() {
   });
 
   // fetch data
-  useEffect(() => {
-    getWeeklyPoll()
-    .then(v => {
-      setWeeklyPolls(v.sort((a,b) => a.week - b.week))
-      const t = Math.floor(Date.now() / 1000)
-      const c = v.find(o => o.startTime.seconds <= t && o.endTime.seconds >= t)
-      setCurrWeeklyPoll(c)
-      // console.log(v,t,c)
-      //TODO: setPollResultViewingKey to current 
-    })
-  }, [setWeeklyPolls,setCurrWeeklyPoll])
+  // useEffect(() => {
+  //   getWeeklyPoll()
+  //   .then(v => {
+  //     setWeeklyPolls(v.sort((a,b) => a.week - b.week))
+  //     const t = Math.floor(Date.now() / 1000)
+  //     const c = v.find(o => o.startTime.seconds <= t && o.endTime.seconds >= t)
+  //     setCurrWeeklyPoll(c)
+  //     // console.log(v,t,c)
+  //     //TODO: setPollResultViewingKey to current 
+  //   })
+  // }, [setWeeklyPolls,setCurrWeeklyPoll])
 
-  useEffect(() => {
-    if (!authUser?.id) {
-      setUserVotes([])
-      return
-    }
-    getUserVotes(authUser)
-    .then(v => {
-      setUserVotes(v)
-      setIsUserVotesFetched(true)
-      // console.log('votes', v)
-    })
-  }, [authUser, setUserVotes, setIsUserVotesFetched])
+  // useEffect(() => {
+  //   if (!authUser?.id) {
+  //     setUserVotes([])
+  //     return
+  //   }
+  //   getUserVotes(authUser)
+  //   .then(v => {
+  //     setUserVotes(v)
+  //     setIsUserVotesFetched(true)
+  //     // console.log('votes', v)
+  //   })
+  // }, [authUser, setUserVotes, setIsUserVotesFetched])
 
   useEffect(() => {
     setIsClient(true);
@@ -95,8 +103,9 @@ export default function HomePage() {
       // getUserVotes(authUser).then((list) => {
       //   setUserVotes(list)
       // })
+      fetchUserVotes(authUser)
     })
-  }, [authUser, setIsUserVoted])
+  }, [authUser, setIsUserVoted, fetchUserVotes])
 
   const getSelectedChoice = (pollId) => {
     let selectedChoice = _.find (userVotes, (userVote) => {

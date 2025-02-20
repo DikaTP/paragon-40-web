@@ -13,44 +13,51 @@ import {Navigation, Pagination} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { ParagonContext } from '../providers/ParagonProvider'
 
 
 export default function PreEventPage() {
   const t = useTranslations();
   const locale = useLocale();
   const authUser = useContext(UserContext)
-  const [openingSpeechPoll, setOpeningSpeechPoll] = useState(null)
-  const [openingSpeechVote, setOpeningSpeechVote] = useState(null)
-  const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
+  // const [openingSpeechPoll, setOpeningSpeechPoll] = useState(null)
+  // const [openingSpeechVote, setOpeningSpeechVote] = useState(null)
+  // const [isUserVotesFetched, setIsUserVotesFetched] = useState(false)
   const [isUserVoted, setIsUserVoted] = useState(false)
+  const {
+    openingSpeechPoll,
+    openingSpeechVote,
+    isUserVotesFetched,
+    fetchUserVotes
+  } = useContext(ParagonContext)
 
   // fetch data
-  useEffect(() => {
-    if (!authUser?.id) {
-      setOpeningSpeechPoll(null)
-      setOpeningSpeechVote(null)
-      return
-    }
+  // useEffect(() => {
+  //   if (!authUser?.id) {
+  //     setOpeningSpeechPoll(null)
+  //     setOpeningSpeechVote(null)
+  //     return
+  //   }
 
-    getOpeningSpeechPoll(authUser)
-    .then(poll => {
-      const t = Math.floor(Date.now() / 1000)
-      if (poll?.startTime.seconds <= t && poll?.endTime.seconds >= t) {
-        setOpeningSpeechPoll(poll)
-        return poll
-      } else {
-        console.log('poll expired', poll)
-        return null
-      }
-    }).then(poll => {
-      if(poll) {
-        getOpeningSpeechVote(authUser, poll.id).then(vote => {
-          setOpeningSpeechVote(vote)
-          setIsUserVotesFetched(true)
-        })
-      }
-    })
-  }, [authUser, setOpeningSpeechPoll, setOpeningSpeechVote, setIsUserVotesFetched])
+  //   getOpeningSpeechPoll(authUser)
+  //   .then(poll => {
+  //     const t = Math.floor(Date.now() / 1000)
+  //     if (poll?.startTime.seconds <= t && poll?.endTime.seconds >= t) {
+  //       setOpeningSpeechPoll(poll)
+  //       return poll
+  //     } else {
+  //       console.log('poll expired', poll)
+  //       return null
+  //     }
+  //   }).then(poll => {
+  //     if(poll) {
+  //       getOpeningSpeechVote(authUser, poll.id).then(vote => {
+  //         setOpeningSpeechVote(vote)
+  //         setIsUserVotesFetched(true)
+  //       })
+  //     }
+  //   })
+  // }, [authUser, setOpeningSpeechPoll, setOpeningSpeechVote, setIsUserVotesFetched])
   
   const selectChoice = useCallback((pollId, choiceId) => {
       submitVote(authUser, pollId, choiceId)
@@ -59,9 +66,10 @@ export default function PreEventPage() {
         // getOpeningSpeechVote(authUser, pollId).then((vote) => {
         //   setOpeningSpeechVote(vote)
         // })
+        fetchUserVotes(authUser)
       })
 
-    }, [authUser, setIsUserVoted])
+    }, [authUser, setIsUserVoted, fetchUserVotes])
 
   const timelineData = useMemo(() => [
     {

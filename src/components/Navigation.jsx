@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from 'next-intl';
 import NavLink from '@/components/NavLink';
 import Image from 'next/image';
@@ -9,12 +9,15 @@ import clsx from "clsx";
 import { signOut, useSession } from "next-auth/react";
 import { UserContext } from "@/app/providers/AuthProvider";
 import { ucwords } from "@/utils/helper";
+import { ParagonContext } from "@/app/providers/ParagonProvider";
+import _ from "lodash";
 
 
 
 export default function Navigation() {
   const t = useTranslations();
   const authUser = useContext(UserContext)
+  const {currWeeklyPoll, userVotes, openingSpeechPoll, openingSpeechVote} = useContext(ParagonContext)
     
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   function toggleMobileMenuOpen() {
@@ -54,15 +57,24 @@ export default function Navigation() {
     signOut()
   }
 
+  const isShowHomeNotifBadge = useMemo(() => {
+    if (!authUser || !currWeeklyPoll) return false
+    return !_.some(userVotes || [], v => v.id ==  `${currWeeklyPoll.id}-${authUser.id}`)
+  }, [userVotes, currWeeklyPoll, authUser])
+
+  const isShowPreeventNotifBadge = useMemo(() => {
+    return openingSpeechPoll && !openingSpeechVote
+  }, [openingSpeechPoll, openingSpeechVote])
+
   return (
     <div className="">
       <div className="mx-auto flex max-w-screen-2xl items-end justify-between py-4 px-4 lg:px-16 lg:mb-8">
         <Image src="/p40-logo.png" alt="logo" width="100" height="67" className='w-[60px] lg:w-[100px]' />
         <div className="hidden lg:block">
           <nav className="flex gap-6">
-            <NavLink href="/home">{t('home')}</NavLink>
+            <NavLink href="/home" showBadge={isShowHomeNotifBadge}>{t('home')}</NavLink>
             <NavLink href="/about">{t('about')}</NavLink>
-            <NavLink href="/pre-event">Pre-Event</NavLink>
+            <NavLink href="/pre-event" showBadge={isShowPreeventNotifBadge}>Pre-Event</NavLink>
             <NavLink href="/main-event">Main Event</NavLink>
           </nav>
         </div>
@@ -111,9 +123,9 @@ export default function Navigation() {
           </div>
           <h4 className="text-lg my-8">Menu</h4>
           <div className="flex flex-col gap-6">
-            <NavLink onClick={toggleMobileMenuOpen} href="/home">{t('home')}</NavLink>
+            <NavLink onClick={toggleMobileMenuOpen} href="/home" showBadge={isShowHomeNotifBadge}>{t('home')}</NavLink>
             <NavLink onClick={toggleMobileMenuOpen} href="/about">{t('about')}</NavLink>
-            <NavLink onClick={toggleMobileMenuOpen} href="/pre-event">Pre-Event</NavLink>
+            <NavLink onClick={toggleMobileMenuOpen} href="/pre-event" showBadge={isShowPreeventNotifBadge}>Pre-Event</NavLink>
             <NavLink onClick={toggleMobileMenuOpen} href="/main-event">Main Event</NavLink>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { auth } from '@/auth';
 import { Archivo } from "next/font/google";
 import "./globals.css";
 import Navigation from '@/components/Navigation';
+import ParagonProvider from './providers/ParagonProvider';
 
 const archivo = Archivo({ subsets: ['latin'] })
 
@@ -29,8 +30,10 @@ export default async function RootLayout({ children }) {
         {/* Wrap children with AuthProvider and pass the session prop */}
         <AuthProvider session={session}>
           <NextIntlClientProvider messages={messages}>
-            {session?.user && <Navigation/>}
-            <main>{children}</main>
+            <ParagonProvider>
+              {session?.user && <Navigation/>}
+              <main>{children}</main>
+            </ParagonProvider>
           </NextIntlClientProvider>
         </AuthProvider>
       </body>
