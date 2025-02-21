@@ -84,7 +84,7 @@ main {
   z-index: -1;
 }
 
-@media (width >= 1024) {
+@media screen and (min-width: 1024px) {
   .bg-kv-3::before {
     background-size: 85%;
     background-position: top 150px right -100%;
