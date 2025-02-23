@@ -95,10 +95,14 @@ export default function MainEventPage() {
                   {t('MainEventPage.watchButtonText')}
                 </button>
                 {authUser && (authUser.placement === 'head office' || authUser.placement === 'jakarta') && (
-                  <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-green-600 text-white text-sm">
+                  <a
+                    href="https://storage.googleapis.com/paragon-p40-cdn/booklet/booklet_venue_jakarta.pdf"
+                    target="_blank"
+                    className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-green-600 text-white text-sm"
+                  >
                     <BookOpenIcon className="size-5" />
                     {t('MainEventPage.GIEnter')}
-                  </button>
+                  </a>
                 )}
               </div>
             </div>
