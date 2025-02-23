@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { UserContext } from '../providers/AuthProvider';
 import { useContext } from 'react';
 import { ucwords } from '@/utils/helper';
+import QRCode from 'react-qr-code';
 
 
 export default function ProfilePage() {
@@ -27,7 +28,14 @@ export default function ProfilePage() {
             <div className="col-span-full lg:col-span-1">
               <a href="" className="text-xl lg:text-2xl font-bold">{t('ProfilePage.description')}</a>
               {/* <Image className="rounded-3xl my-4 col-span-full lg:col-span-1 mx-auto" src="/qr_example.png" alt="qr_code" width="300" height="500"/> */}
-              <div className="h-[300px] w-[300px] rounded-3xl bg-white my-4  mx-auto"></div>
+              <div className="h-[300px] w-[300px] rounded-3xl bg-white my-4 p-4  mx-auto">
+                {authUser?.id && (
+                  <QRCode
+                    value={authUser?.id}
+                    style={{height: "auto", width: "100%"}}
+                  />
+                )}
+              </div>
             </div>
 
             <div className="flex flex-col gap-2 text-start col-span-full lg:col-span-1 justify-center">
