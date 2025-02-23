@@ -1,14 +1,17 @@
 "use client";
 
-import { MapPinIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
+import { BookOpenIcon, MapPinIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useContext } from "react";
+import { UserContext } from "../providers/AuthProvider";
 
 const schedules = ["07.30 WIB", "08.30 WITA & MYT", "09.30 WIT"];
 const goods = ["Work ID", "Book", "Paper"];
 
 export default function MainEventPage() {
   const t = useTranslations();
+  const authUser = useContext(UserContext)
 
   return (
     <div className="flex-grow pb-8 bg-kv-2">
@@ -60,12 +63,21 @@ export default function MainEventPage() {
         </div>
         {/* Location */}
         <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
-          <h2 className="text-4xl lg:text-6xl mb-5">LOCATION</h2>
+          <h2 className="text-4xl lg:text-6xl mb-5">{t('MainEventPage.location')}</h2>
           <div className="grid grid-cols-2 gap-8">
             <div className="col-span-full lg:col-span-1">
-              <div className="h-72 lg:h-96 w-full rounded-xl bg-white"></div>
+              <div className="grid grid-cols-2 gap-8 p-4 items-center content-center border-white border-4 rounded-xl">
+                <Image src="/xxi.webp" width={450} height={180} className="mx-auto lg:max-w-40" />
+                <Image src="/cgv.webp" width={450} height={199} className="mx-auto lg:max-w-40" />
+                <Image src="/cinepolis.webp" width={998} height={327} className="mx-auto lg:max-w-40" />
+                <Image src="/sams-logo.webp" width={800} height={591} className="mx-auto lg:max-w-40" />
+                <div className="col-span-2 text-center">
+                  <p className="text-2xl">{t('MainEventPage.otherVenue')}</p>
+                  <p>{t('MainEventPage.otherVenueDesc')}</p>
+                </div>
+              </div>
             </div>
-            <div className="col-span-full lg:col-span-1 flex flex-col justify-between lg:p-8">
+            <div className="col-span-full lg:col-span-1 flex flex-col justify-between lg:p-4">
               <div className="mb-8">
                 <div className="flex flex-row gap-5 mb-8">
                 </div>
@@ -73,15 +85,21 @@ export default function MainEventPage() {
                   {t('MainEventPage.locationDescription')}
                 </span>
               </div>
-              <div className="flex flex-row gap-3 justify-around lg:justify-start items-center">
-                <button className="flex flex-row gap-1 justify-center items-center rounded-full py-3 px-4 bg-purple-600 text-white text-sm">
+              <div className="flex flex-row flex-wrap gap-3 justify-around lg:justify-start items-center">
+                <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-purple-600 text-white text-sm">
                   <MapPinIcon className="size-5" />
                   {t('MainEventPage.mapButtonText')}
                 </button>
-                <button className="flex flex-row gap-1 justify-center items-center rounded-full py-3 px-4 bg-orange-600 text-white text-sm">
+                <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-orange-600 text-white text-sm">
                   <PlayCircleIcon className="size-5" />
                   {t('MainEventPage.watchButtonText')}
                 </button>
+                {authUser && (authUser.placement === 'head office' || authUser.placement === 'jakarta') && (
+                  <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-green-600 text-white text-sm">
+                    <BookOpenIcon className="size-5" />
+                    {t('MainEventPage.GIEnter')}
+                  </button>
+                )}
               </div>
             </div>
           </div>

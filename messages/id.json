@@ -47,7 +47,11 @@
     "offlineArea": "Offline di setiap Area Kerja",
     "locationDescription": "Akan berlokasi di venue terdekat dengan Area Kerja anda",
     "mapButtonText": "Buka Peta",
-    "watchButtonText": "Tonton Siaran Langsung"
+    "watchButtonText": "Tonton Siaran Langsung",
+    "GIEnter": "Panduan Masuk GI",
+    "otherVenue": "Venue lainnya",
+    "otherVenueDesc": "(Hotel, Kantor DC, Perpus/Aula)",
+    "location": "LOKASI"
   },
   "LoginPage": {
     "titleHighlight": "40 Years",

@@ -47,7 +47,11 @@
     "offlineArea": "Offline in each Work Area",
     "locationDescription": "Will be located on your nearest Work Area",
     "mapButtonText": "Open Maps",
-    "watchButtonText": "Watch Livestream"
+    "watchButtonText": "Watch Livestream",
+    "GIEnter": "GI Entrance Guide",
+    "otherVenue": "Other venue",
+    "otherVenueDesc": "(Hotel, DC Office, Library/Hall)",
+    "location": "LOCATION"
   },
   "LoginPage": {
     "titleHighlight": "40 Years",
