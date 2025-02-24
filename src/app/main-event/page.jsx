@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenIcon, MapPinIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
+import { BookOpenIcon, CheckCircleIcon, MapPinIcon, PlayCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useContext } from "react";
@@ -66,15 +66,22 @@ export default function MainEventPage() {
           <h2 className="text-4xl lg:text-6xl mb-5">{t('MainEventPage.location')}</h2>
           <div className="grid grid-cols-2 gap-8">
             <div className="col-span-full lg:col-span-1">
-              <div className="grid grid-cols-2 gap-8 p-4 items-center content-center border-white border-4 rounded-xl">
-                <Image src="/xxi.webp" width={450} height={180} className="mx-auto lg:max-w-40" />
-                <Image src="/cgv.webp" width={450} height={199} className="mx-auto lg:max-w-40" />
-                <Image src="/cinepolis.webp" width={998} height={327} className="mx-auto lg:max-w-40" />
-                <Image src="/sams-logo.webp" width={800} height={591} className="mx-auto lg:max-w-40" />
-                <div className="col-span-2 text-center">
-                  <p className="text-2xl">{t('MainEventPage.otherVenue')}</p>
-                  <p>{t('MainEventPage.otherVenueDesc')}</p>
+              <div className="border-white border-4 rounded-xl py-4">
+                <p className="text-center text-3xl mb-2">Indonesia</p>
+                <div className="grid grid-cols-2 gap-8 p-4 items-center content-center ">
+                  <Image src="/xxi.webp" width={450} height={180} className="mx-auto lg:max-w-40" />
+                  <Image src="/cgv.webp" width={450} height={199} className="mx-auto lg:max-w-40" />
+                  <Image src="/sams-logo.webp" width={800} height={591} className="mx-auto lg:max-w-40" />
+                  <div className="text-center">
+                    <p className="text-2xl">{t('MainEventPage.otherVenue')}</p>
+                    <p>{t('MainEventPage.otherVenueDesc')}</p>
+                  </div>
                 </div>
+                <p className="text-center text-3xl mb-4">Malaysia</p>
+                <div className="flex justify-center">
+                  <Image src="/rexkl.webp" width={320} height={320} className="mx-auto max-w-28 lg:max-w-32" />
+                </div>
+
               </div>
             </div>
             <div className="col-span-full lg:col-span-1 flex flex-col justify-between lg:p-4">
@@ -110,20 +117,20 @@ export default function MainEventPage() {
         </div>
 
         {/* Do n Dont's */}
-        {false && 
+        {true && 
           <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
             <div className="grid grid-cols-2 gap-8">
               <div className="col-span-full lg:col-span-1">
                 <h3 className="text-4xl lg:text-6xl text-white mb-8">Do</h3>
-                <div className="grid grid-cols-2 gap-6 lg:px-6">
-                  {Array.from({ length: 4 }).map((_, index) => {
+                <div className="grid grid-cols-1 gap-6 lg:px-6">
+                  {Array.from({ length: 14 }).map((_, index) => {
                     return (
                       <div
                         key={index}
                         className="flex flex-row gap-3 items-center"
                       >
-                        <div className="bg-gray-300 size-10 lg:size-16"></div>
-                        <span className="text-white text-xl lg:text-3xl">list {index + 1}</span>
+                        <CheckCircleIcon className="size-6 lg:size-8 text-green-500 flex-shrink-0" />
+                        <span className="text-white text-pretty text-base lg:text-xl">{t(`MainEventPage.do${index+1}`)}</span>
                       </div>
                     );
                   })}
@@ -131,22 +138,22 @@ export default function MainEventPage() {
               </div>
               <div className="col-span-full lg:col-span-1">
                 <h3 className="text-4xl lg:text-6xl text-white mb-8">Dont's</h3>
-                <div className="grid grid-cols-2 gap-6 lg:px-6">
-                  {Array.from({ length: 4 }).map((_, index) => {
+                <div className="grid grid-cols-1 gap-6 lg:px-6">
+                  {Array.from({ length: 10 }).map((_, index) => {
                     return (
                       <div
                         key={index}
                         className="flex flex-row gap-3 items-center"
                       >
-                        <div className="bg-gray-300 size-10 lg:size-16"></div>
-                        <span className="text-white text-xl lg:text-3xl">list {index + 1}</span>
+                        <XMarkIcon className="size-6 lg:size-8 text-red-500 flex-shrink-0" />
+                        <span className="text-white text-pretty text-base lg:text-xl">{t(`MainEventPage.dont${index+1}`)}</span>
                       </div>
                     );
                   })}
                 </div>
               </div>
             </div>
-            <div className="mt-14">
+            {/* <div className="mt-14">
               <h4 className="font-semibold text-3xl text-white mb-4">
                 What to bring
               </h4>
@@ -160,7 +167,7 @@ export default function MainEventPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         }
       </div>
