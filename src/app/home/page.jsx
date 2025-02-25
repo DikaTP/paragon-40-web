@@ -119,6 +119,10 @@ export default function HomePage() {
     setLoginPopup(0)
   }
 
+  const roundTo = (num, precision) => {
+    return (+(Math.round(+(num + 'e' + precision)) + 'e' + -precision)).toFixed(precision);
+  }
+
   return (
     <div className="flex-grow pb-8 bg-kv-3">
       <div className="flex flex-col max-w-screen-2xl mx-auto py-4 px-4 lg:px-16">
@@ -242,7 +246,7 @@ export default function HomePage() {
                             <path d="M4.21 13.89L3 23L8 20L13 23L11.79 13.88M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                         )}
-                        {`${pollResult.result.votes[choice.key] / pollResult.result.totalVote * 100}% (${format.number(pollResult.result.votes[choice.key])} ${t('HomePage.vote')})`}
+                        {`${roundTo(pollResult.result.votes[choice.key] / pollResult.result.totalVote * 100, 3)}% (${format.number(pollResult.result.votes[choice.key])} ${t('HomePage.vote')})`}
                       </div>
                     </div>
                   </div>
