@@ -25,25 +25,28 @@ export default function ProfilePage() {
         </div>
         <div className="w-full p-6 lg:p-8 rounded-3xl bg-kv-gradient text-white my-2 lg:my-4">
           <div className="grid grid-cols-2">
-            <div className="col-span-full lg:col-span-1">
-              <a href="" className="text-xl lg:text-2xl font-bold">{t('ProfilePage.description')}</a>
-              {/* <Image className="rounded-3xl my-4 col-span-full lg:col-span-1 mx-auto" src="/qr_example.png" alt="qr_code" width="300" height="500"/> */}
-              <div className="h-[300px] w-[300px] rounded-3xl bg-white my-4 p-4  mx-auto">
-                {authUser?.id && (
-                  <QRCode
-                    value={authUser?.id}
-                    style={{height: "auto", width: "100%"}}
-                  />
-                )}
+            {authUser?.showAttendanceQr && (
+              <div className="col-span-full lg:col-span-1">
+                <a href="" className="text-xl lg:text-2xl font-bold">{t('ProfilePage.description')}</a>
+                {/* <Image className="rounded-3xl my-4 col-span-full lg:col-span-1 mx-auto" src="/qr_example.png" alt="qr_code" width="300" height="500"/> */}
+                <div className="h-[300px] w-[300px] rounded-3xl bg-white my-4 p-4  mx-auto">
+                  {authUser?.id && (
+                    <QRCode
+                      value={authUser?.id}
+                      style={{height: "auto", width: "100%"}}
+                    />
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="flex flex-col gap-2 text-start col-span-full lg:col-span-1 justify-center">
               <p className="text-base lg:text-2xl font-bold">{authUser?.name}</p>
               <p className="text-base lg:text-2xl">{authUser?.email}</p>
               {/* <p className="text-base lg:text-2xl">{authUser?.jobPosition}</p> */}
               <p className="text-base lg:text-2xl">{t('ProfilePage.regionOffice')}: {authUser?.placement ? ucwords(authUser?.placement) : ''}</p>
-            </div>
+              <p className="text-base lg:text-2xl">Venue: {authUser?.venue}</p>
+              </div>
           </div>
         </div>
       </div>

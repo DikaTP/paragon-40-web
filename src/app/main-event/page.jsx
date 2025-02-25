@@ -93,10 +93,14 @@ export default function MainEventPage() {
                 </span>
               </div>
               <div className="flex flex-row flex-wrap gap-3 justify-around lg:justify-start items-center">
-                <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-purple-600 text-white text-sm">
+                <a
+                  href={authUser?.mapUrl || '#'}
+                  target="_blank"
+                  className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-purple-600 text-white text-sm"
+                >
                   <MapPinIcon className="size-5" />
                   {t('MainEventPage.mapButtonText')}
-                </button>
+                </a>
                 <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-orange-600 text-white text-sm">
                   <PlayCircleIcon className="size-5" />
                   {t('MainEventPage.watchButtonText')}
