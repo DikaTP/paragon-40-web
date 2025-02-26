@@ -280,7 +280,7 @@ export default function HomePage() {
       {isClient ? showLoginPopup == 1 && (
           <div className="w-screen h-screen fixed top-0 left-0 m-0 p-0 inset-0 flex justify-center items-center bg-gray-700 bg-opacity-25">
             <div className="relative rounded-xl shadow-xl flex flex-col items-center w-80">
-                <img src={`https://storage.googleapis.com/paragon-p40-cdn/asset/login_popup_vote_${locale}.webp`} alt="" />
+                <img src={`https://storage.googleapis.com/paragon-p40-cdn/asset/login_popup_merch_${locale}.webp`} alt="" />
                 <div className="absolute right-0 top-0 p-2 cursor-pointer" onClick={() => closeLoginPopup()}>
                   <XMarkIcon className="size-6" />
                 </div>

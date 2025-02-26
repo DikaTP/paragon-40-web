@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import { UserContext } from "../providers/AuthProvider";
 
+const schedulesOpen = ["06.30 WIB", "07.30 WITA & MYT", "08.30 WIT"];
 const schedules = ["07.30 WIB", "08.30 WITA & MYT", "09.30 WIT"];
 const goods = ["Work ID", "Book", "Paper"];
 
@@ -39,6 +40,18 @@ export default function MainEventPage() {
                 <span className="font-semibold text-base">
                   {t("MainEventPage.offlineArea")}
                 </span>
+                <p>{t("MainEventPage.openGate")}</p>
+                <div className="flex flex-row gap-4 items-center flex-wrap">
+                  {schedulesOpen.map((item, index) => (
+                    <div
+                      className="flex border border-white py-1 px-3 rounded-full text-nowrap"
+                      key={index}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <p>{t("MainEventPage.closeGate")}</p>
                 <div className="flex flex-row gap-4 items-center flex-wrap">
                   {schedules.map((item, index) => (
                     <div
@@ -51,13 +64,13 @@ export default function MainEventPage() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl col-span-full lg:col-span-1">
-              <Image
-                src={"/kita-sekarang-karena-kita-kemarin.png"}
-                alt="Kita Sekarang Karena Kita Kemarin"
-                width={500}
-                height={500}
-              />
+            <div className="rounded-2xl col-span-full lg:col-span-1 flex justify-center">
+              <div className="w-80">
+                <img
+                  src={"https://storage.googleapis.com/paragon-p40-cdn/asset/coming_soon_hero_image.webp"}
+                  alt="coming_soon_hero_image"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -66,18 +79,18 @@ export default function MainEventPage() {
           <h2 className="text-4xl lg:text-6xl mb-5">{t('MainEventPage.location')}</h2>
           <div className="grid grid-cols-2 gap-8">
             <div className="col-span-full lg:col-span-1">
-              <div className="border-white border-4 rounded-xl py-4">
-                <p className="text-center text-3xl mb-2">Indonesia</p>
+              <div className="border-white border-4 rounded-xl py-4 bg-[#116aad] bg-opacity-70">
+                <p className="text-center text-3xl mb-2 underline">Indonesia</p>
                 <div className="grid grid-cols-2 gap-8 p-4 items-center content-center ">
-                  <Image src="/xxi.webp" width={450} height={180} className="mx-auto lg:max-w-40" />
                   <Image src="/cgv.webp" width={450} height={199} className="mx-auto lg:max-w-40" />
+                  <Image src="/xxi.webp" width={450} height={180} className="mx-auto lg:max-w-40" />
                   <Image src="/sams-logo.webp" width={800} height={591} className="mx-auto lg:max-w-40" />
                   <div className="text-center">
                     <p className="text-2xl">{t('MainEventPage.otherVenue')}</p>
                     <p>{t('MainEventPage.otherVenueDesc')}</p>
                   </div>
                 </div>
-                <p className="text-center text-3xl mb-4">Malaysia</p>
+                <p className="text-center text-3xl mb-4 underline">Malaysia</p>
                 <div className="flex justify-center">
                   <Image src="/rexkl.webp" width={320} height={320} className="mx-auto max-w-28 lg:max-w-32" />
                 </div>
@@ -88,9 +101,18 @@ export default function MainEventPage() {
               <div className="mb-8">
                 <div className="flex flex-row gap-5 mb-8">
                 </div>
-                <span className="font-semibold text-2xl text-white">
-                  {t('MainEventPage.locationDescription')}
-                </span>
+                <ul className="list-disc list-inside">
+                  {Array.from({ length: 3 }).map((_, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className="my-2"
+                      >
+                        <span className="text-white text-pretty text-base lg:text-xl" dangerouslySetInnerHTML={{__html: t.raw(`MainEventPage.locationDesc${index+1}`)}} />
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
               <div className="flex flex-row flex-wrap gap-3 justify-around lg:justify-start items-center">
                 <a
@@ -101,10 +123,14 @@ export default function MainEventPage() {
                   <MapPinIcon className="size-5" />
                   {t('MainEventPage.mapButtonText')}
                 </a>
-                <button className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-orange-600 text-white text-sm">
+                <a
+                  href="https://youtube.com/live/ukKW6nr1TqU?feature=share"
+                  target="_blank"
+                  className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-orange-600 text-white text-sm"
+                >
                   <PlayCircleIcon className="size-5" />
                   {t('MainEventPage.watchButtonText')}
-                </button>
+                </a>
                 {authUser && (authUser.placement === 'head office' || authUser.placement === 'jakarta') && (
                   <a
                     href="https://storage.googleapis.com/paragon-p40-cdn/booklet/booklet_venue_jakarta.pdf"
@@ -127,7 +153,7 @@ export default function MainEventPage() {
               <div className="col-span-full lg:col-span-1">
                 <h3 className="text-4xl lg:text-6xl text-white mb-8">Do</h3>
                 <div className="grid grid-cols-1 gap-6 lg:px-6">
-                  {Array.from({ length: 14 }).map((_, index) => {
+                  {Array.from({ length: 13 }).map((_, index) => {
                     return (
                       <div
                         key={index}
