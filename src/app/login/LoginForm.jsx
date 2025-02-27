@@ -81,7 +81,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-3">
+    <form action={formAction} className="space-y-3" noValidate={true}>
       <div className="w-full">
         <div>
           <label
