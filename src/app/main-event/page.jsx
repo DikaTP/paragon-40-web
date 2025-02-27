@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenIcon, CheckCircleIcon, MapPinIcon, PlayCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { BookOpenIcon, CheckCircleIcon, LightBulbIcon, MapPinIcon, PlayCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useContext } from "react";
@@ -130,6 +130,14 @@ export default function MainEventPage() {
                 >
                   <PlayCircleIcon className="size-5" />
                   {t('MainEventPage.watchButtonText')}
+                </a>
+                <a
+                  href="https://paragon40.carrd.co/"
+                  target="_blank"
+                  className="flex flex-row text-nowrap gap-1 justify-center items-center rounded-full py-3 px-4 bg-primary text-white text-sm"
+                >
+                  <LightBulbIcon className="size-5" />
+                  {t('MainEventPage.keyInformation')}
                 </a>
                 {authUser && (authUser.placement === 'head office' || authUser.placement === 'jakarta') && (
                   <a
